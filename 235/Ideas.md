@@ -1,0 +1,4 @@
+ideas 
+ - fjkd
+ - df
+ - f
