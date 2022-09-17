@@ -1,0 +1,65 @@
+
+body {
+    background-color: black;
+    color: white;
+    
+}
+
+main, header, footer {
+    background-color:#7F2CCB;
+    margin: 0 auto;
+    width: 70vw;
+    padding: 1rem 1rem;
+    border: 1px solid white;
+}
+    
+footer {
+    background-color:darkblue;
+}
+
+h1 {
+    text-align: center;
+    margin: 1rem;
+}
+
+img {
+    width: 30%;
+    float: right; 
+    margin: 1rem;
+}
+
+p {
+    display: block;
+    margin: 1rem;
+}
+
+.homepage-sec {  
+    border: 0;
+    border-bottom: 1px;
+    border-style: dotted;
+
+}
+
+.portrait {
+    border-color: white;
+    border-style: dotted;
+    border-radius: 2rem;
+}
+
+#biography:after {
+    content: " ";  display: block;  clear: both;
+}
+
+#projects {
+    content: " ";  display: block;  clear: both;
+}
+
+#class-info {
+    content: " ";  display: block;  clear: both;
+}
+
+a:link { color: white; }
+a:visited { color: rgb(255, 205, 205); }
+a:focus { color: black; background-color: lightpink; }
+a:hover { color: black; background-color: lightpink; }
+a:active { color: white; background-color: lightpink; }

@@ -1,0 +1,10 @@
+/* Do everything in this file */
+h2 {
+    border-bottom: 1px solid red;
+}
+
+figure {
+    display: flex;
+    margin: 0 30% ;
+}
+
