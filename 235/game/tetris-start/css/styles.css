@@ -29,11 +29,11 @@ header, main, footer {
     flex: 0 1 200px;
 }
 
-div .tet\ long img {
+.long img {
     width: 80%;
 }
 
-div .tet\ square img {
+.square img {
     width: 40%;
 }
 
