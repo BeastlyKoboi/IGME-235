@@ -1,0 +1,26 @@
+/* Do everything in this file */
+h2 {
+    border-bottom: 1px solid red;
+    clear:both;
+}
+
+figure {
+    float: right;
+    width: 40%;
+    margin: 0 40% ;
+}
+
+figure img {
+    width: auto;
+}
+
+.tetlong, .tet, .tet-square {
+    float: left;
+    width: 30%;
+    border: 1px solid black;
+}
+
+footer {
+    clear: both;
+    
+}
