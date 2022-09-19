@@ -44,8 +44,8 @@ a {
     text-decoration: none;
 }
 
-a:link { color: pink; }
-a:visited { color: rgb(255, 255, 255); }
-a:focus { color: beige; background-color: lightpink; }
-a:hover { color: beige; background-color: lightpink; }
-a:active { color: white; background-color: lightpink; }
+a:link { color: rgb(0, 36, 51); }
+a:visited { color: maroon; }
+a:focus { color: darkred; background-color: lightpink; }
+a:hover { color: darkred; background-color: lightpink; }
+a:active { color: red; background-color: lightpink; }
