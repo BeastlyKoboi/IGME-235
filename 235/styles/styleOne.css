@@ -31,10 +31,15 @@ img {
 p {
     display: block;
     margin: 1rem;
+    font-size: large;
+}
+
+li {
+    font-size: large;
 }
 
 .homepage-sec {  
-    border: 0;
+    border: 0px;
     border-bottom: 1px;
     border-style: dotted;
 
@@ -56,6 +61,10 @@ p {
 
 #class-info {
     content: " ";  display: block;  clear: both;
+}
+
+a {
+    font-size: large;
 }
 
 a:link { color: white; }
