@@ -38,7 +38,7 @@ footer { grid-area: footer; }
 h1.game {
     width: 500px;
     height: 345px;
-    background: url(/images/tetris-logo.png) no-repeat;
+    background: url(../images/tetris-logo.png) no-repeat;
     text-indent: -9999px;
 }
 
