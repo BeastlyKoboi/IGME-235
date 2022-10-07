@@ -37,10 +37,12 @@ body {
     position: sticky;
     text-align: center;
     top: 0px;
-    
+    display: flex;
+    justify-content: center;
 }
 #navigation img {
     border-radius: 0px 0px 20px 20px;
+    flex: 0 1 400px;
 }
 #navigation p {
     position: absolute;
@@ -51,5 +53,4 @@ body {
 
 img {
     width: 100%;
-    
 }
