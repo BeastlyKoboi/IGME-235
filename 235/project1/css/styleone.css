@@ -1,10 +1,55 @@
+body {
+    margin: 1rem;
+    display: grid;
 
+}
 
+@media screen and (min-width: 850px) {
+    body {
+        grid-template-columns: 1fr 1fr 3fr;
+        grid-template-rows: auto 1fr 3fr 2fr 2fr 3fr 6fr 7fr;
 
+        grid-template-areas: 
+        "nav     nav     ."
+        ".       .       time"
+        "histimg histimg title"
+        "histimg histimg abstr"
+        "histimg histimg text"
+        "histcap diagcap text"
+        "diagimg diagimg text"
+        "note    note    decor";
+    }
+}
 
+#navigation { grid-area: nav;}
+#hist-image { grid-area: histimg;}
+#hist-caption { grid-area: histcap;}
+#diag-caption { grid-area: diagcap;}
+#diagram-image { grid-area: diagimg;}
+#timeframe { grid-area: time;}
+#title { grid-area: title;}
+#abstract { grid-area: abstr;}
+#text { grid-area: text;}
+#sticky-note { grid-area: note;}
+#decor-images { grid-area: decor;}
 
+#navigation {
+    position: sticky;
+    text-align: center;
+    top: 0px;
+    
+}
+#navigation img {
+    border-radius: 0px 0px 20px 20px;
+}
+#navigation p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
-
-
-
-
+img {
+    width: 100%;
+    
+}
