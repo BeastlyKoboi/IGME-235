@@ -47,7 +47,6 @@ body {
         "histimg histimg text"
         "histcap diagcap text"
         "diagimg diagimg text"
-
         "note note decor";
     }
 }
@@ -64,6 +63,7 @@ body {
 #sticky-note { grid-area: note;}
 #decor-images { grid-area: decor;}
 
+/* Handles flexbox for nav, sticky note, and decor on wide */
 @media screen and (min-width: 850px) {
     #navigation {
         position: sticky;
@@ -171,4 +171,31 @@ img {
 #title {
     font-family: 'Creepster', cursive;
     font-size: 60px;
+}
+
+/* Increase font sizes on really large screens */
+@media screen and (min-width: 1400px){
+    #navigation{
+        font-size: 50px;
+    }
+    #sticky-note strong {
+        font-size: xx-large;
+    }
+    #sticky-note p {
+        font-size:medium;
+    }
+    #timeframe {
+        font-family: 'Stardos Stencil', cursive;
+        font-size: xxx-large;
+        color: darkgrey;
+    }
+    #title {
+        font-size: 90px;
+    }
+    #diag-caption, #hist-caption {
+        font-size: large;
+    }
+    #text, #abstract {
+        font-size: large;
+    }
 }
