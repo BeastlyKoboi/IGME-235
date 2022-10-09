@@ -1,0 +1,201 @@
+body {
+    margin: 0rem;
+
+    display: grid;
+    grid-template-areas: 
+        "nav        nav"
+        "time       time"
+        "title      title"
+        "abstr      abstr"
+        "text       text"
+        "histimg    histimg"
+        "histcap    diagcap"
+        "diagimg    diagimg"
+        "note       note"
+        "decor      decor";
+}
+
+@media screen and (min-width: 850px) {
+    body {
+        grid-template-columns: 1fr 1fr 3fr;
+        grid-template-rows: auto auto auto auto auto auto auto auto;
+
+        grid-template-areas: 
+        "nav     nav     ."
+        ".       .       time"
+        "histimg histimg title"
+        "histimg histimg abstr"
+        "histimg histimg text"
+        "histcap diagcap text"
+        "diagimg diagimg text"
+        "note note text"
+        "decor decor decor";
+        
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    body {
+        grid-template-columns: 1fr 1fr 4fr;
+        grid-template-rows: auto auto auto auto auto auto auto auto;
+
+        grid-template-areas: 
+        "nav     nav     ."
+        ".       .       time"
+        "histimg histimg title"
+        "histimg histimg abstr"
+        "histimg histimg text"
+        "histcap diagcap text"
+        "diagimg diagimg text"
+        "note note decor";
+    }
+}
+
+#navigation { grid-area: nav;}
+#hist-image { grid-area: histimg;}
+#hist-caption { grid-area: histcap;}
+#diag-caption { grid-area: diagcap;}
+#diagram-image { grid-area: diagimg;}
+#timeframe { grid-area: time;}
+#title { grid-area: title;}
+#abstract { grid-area: abstr;}
+#text { grid-area: text;}
+#sticky-note { grid-area: note;}
+#decor-images { grid-area: decor;}
+
+/* Handles flexbox for nav, sticky note, and decor on wide */
+@media screen and (min-width: 850px) {
+    #navigation {
+        position: sticky;
+        text-align: center;
+        top: 0px;
+        display: flex;
+        justify-content: center;
+        z-index: 5;
+    }
+    #navigation img {
+        border-radius: 0px 0px 3rem 0rem;
+        flex: 0 1 400px;
+    }
+    #navigation p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+    }
+
+    #sticky-note {
+        position: relative;
+        text-align: left;
+        top: 0px;
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0 0 0;
+    }
+    #sticky-note img {
+        flex: 0 1 400px;
+        align-self:flex-start;
+
+    }
+    #sticky-note strong {
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    #sticky-note p {
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        transform: translate(-20%, -50%);
+        margin: 0 2.5rem;
+    }
+
+    #decor-images {
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0 0 0;
+
+    }
+    #decor-images img {
+        flex: 0 1 400px;
+        align-self: center;
+        width: 50%;
+    }
+}
+
+img {
+    width: 100%;
+}
+
+#navigation {
+    font-family: 'Creepster', cursive;
+    font-size: 40px;
+}
+
+#hist-image, #diagram-image {
+    padding: 0rem 1rem;
+}
+#diag-caption, #hist-caption {
+    padding: 0rem 1rem;
+    font-size: smaller;
+}
+#hist-image img {
+    transform: rotate(1deg);
+}
+#diagram-image img {
+    border: 10px solid white;
+    filter: drop-shadow(-5px 5px 5px black);
+    transform: scale(.8) rotate(-15deg);
+}
+
+#timeframe, #title, #abstract, #text {
+    margin: .2rem 1rem;
+}
+
+#sticky-note {
+    font-family: 'Permanent Marker', cursive;
+}
+#sticky-note strong {
+    font-size: x-large;
+}
+#sticky-note p {
+    font-size:medium;
+}
+#timeframe {
+    font-family: 'Stardos Stencil', cursive;
+    font-size: xx-large;
+    color: darkgrey;
+}
+#title {
+    font-family: 'Creepster', cursive;
+    font-size: 60px;
+}
+
+/* Increase font sizes on really large screens */
+@media screen and (min-width: 1400px){
+    #navigation{
+        font-size: 50px;
+    }
+    #sticky-note strong {
+        font-size: xx-large;
+    }
+    #sticky-note p {
+        font-size:medium;
+    }
+    #timeframe {
+        font-family: 'Stardos Stencil', cursive;
+        font-size: xxx-large;
+        color: darkgrey;
+    }
+    #title {
+        font-size: 90px;
+    }
+    #diag-caption, #hist-caption {
+        font-size: large;
+    }
+    #text, #abstract {
+        font-size: large;
+    }
+}
