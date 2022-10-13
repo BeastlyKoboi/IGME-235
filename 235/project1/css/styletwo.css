@@ -6,9 +6,9 @@ html {scroll-behavior: smooth;}
     display: grid;
     grid-template-areas: 
         "nav        nav"
-        "title      aboutme"
-        "abstr      aboutme"
-        "text       aboutme"
+        "aboutme    aboutme"
+        "aboutme    aboutme"
+        "aboutme    aboutme"
         "histimg    histimg"
         "histcap    diagcap"
         "diagimg    diagimg"
@@ -19,6 +19,8 @@ html {scroll-behavior: smooth;}
     background-image: url(../media/woodWallpaper2.jpg);
     background-repeat: round;
 }
+
+
 
 @media screen and (min-width: 850px) {
     body {
@@ -64,6 +66,10 @@ html {scroll-behavior: smooth;}
     width: 75%;
     height: 400px;
     zoom:150%;
+}
+
+#contact iframe {
+    margin: 0 auto;
     
 }
 
@@ -165,6 +171,7 @@ header {
 
 #hist-image, #diagram-image {
     padding: 0rem 1rem;
+    width: 500px;
 }
 #diag-caption, #hist-caption {
     padding: 0rem 1rem;
