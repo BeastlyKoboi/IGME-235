@@ -1,6 +1,4 @@
-html {scroll-behavior: smooth;}
-
-#wrapper {
+body {
     margin: 0rem;
 
     display: grid;
@@ -14,10 +12,19 @@ html {scroll-behavior: smooth;}
         "diagimg    diagimg"
         "projs      projs"
         "res        res"
-        "contact    contact";
+        "decor      decor";
     
     background-image: url(../media/woodWallpaper2.jpg);
     background-repeat: round;
+}
+
+#resume embed {
+    display: block; 
+    margin: 0 auto; 
+    width: 75%;
+    height: 600px;
+    zoom: normal;
+    
 }
 
 @media screen and (min-width: 850px) {
@@ -34,14 +41,13 @@ html {scroll-behavior: smooth;}
         "diagimg diagimg aboutme"
         "projs   projs   aboutme"
         "res     res     res"
-        "contact contact contact"
         "decor   decor   decor";
         
     }
 }
 
 @media screen and (min-width: 1100px) {
-    #wrapper {
+    body {
         grid-template-columns: 1fr 1fr 4fr;
         grid-template-rows: auto auto auto auto auto auto auto auto;
 
@@ -53,18 +59,8 @@ html {scroll-behavior: smooth;}
         "histcap diagcap aboutme"
         "diagimg diagimg aboutme"
         "projs   projs   projs"
-        "res     res     res"
-        "contact contact contact";
+        "res     res     res";
     }
-}
-
-#resume embed {
-    display: block; 
-    margin: 0 auto; 
-    width: 75%;
-    height: 400px;
-    zoom:150%;
-    
 }
 
 header { grid-area: nav;}
@@ -76,7 +72,6 @@ header { grid-area: nav;}
 #about-me { grid-area: aboutme;}
 #projects { grid-area: projs;}
 #resume { grid-area: res;}
-#contact { grid-area: contact}
 #decor-images { grid-area: decor;}
 
 /* Handles flexbox for nav, sticky note, and decor on wide */
@@ -86,7 +81,7 @@ header { grid-area: nav;}
         text-align: center;
         top: 0px;
         z-index: 5;
-        background-image: url(../media/woodWallpaper2.jpg);
+        
     }
     header img {
         border-radius: 0px 0px 3rem 0rem;
@@ -99,11 +94,9 @@ header { grid-area: nav;}
         padding: 0%;
         margin: 0% 20px;
         background-color: transparent;
-        
     }
     header ul li {
         float: left;
-        border-radius: 10px 10px 0px 0px;
         width: 100%;
         border-left: 2px solid Black;
         border-top: 2px solid black;
@@ -158,11 +151,6 @@ header {
     font-size: 30px;
 }
 
-#aboutme, #projects, #resume, #contact {
-    padding-top: 50px;
-}
-
-
 #hist-image, #diagram-image {
     padding: 0rem 1rem;
 }
@@ -171,9 +159,7 @@ header {
     font-size: smaller;
 }
 #hist-image img {
-    border: 10px solid white;
-    filter: drop-shadow(-5px 5px 5px black);
-    transform: scale(.8) ;
+    transform: rotate(1deg);
 }
 #diagram-image img {
     border: 10px solid white;
