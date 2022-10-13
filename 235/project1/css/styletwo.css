@@ -4,15 +4,27 @@ body {
     display: grid;
     grid-template-areas: 
         "nav        nav"
-        "time       time"
-        "title      title"
-        "abstr      abstr"
-        "text       text"
+        "title      aboutme"
+        "abstr      aboutme"
+        "text       aboutme"
         "histimg    histimg"
         "histcap    diagcap"
         "diagimg    diagimg"
-        "note       note"
+        "projs      projs"
+        "res        res"
         "decor      decor";
+    
+    background-image: url(../media/woodWallpaper2.jpg);
+    background-repeat: round;
+}
+
+#resume embed {
+    display: block; 
+    margin: 0 auto; 
+    width: 75%;
+    height: 600px;
+    zoom: normal;
+    
 }
 
 @media screen and (min-width: 850px) {
@@ -21,15 +33,15 @@ body {
         grid-template-rows: auto auto auto auto auto auto auto auto;
 
         grid-template-areas: 
-        "nav     nav     ."
-        ".       .       time"
-        "histimg histimg title"
-        "histimg histimg abstr"
-        "histimg histimg text"
-        "histcap diagcap text"
-        "diagimg diagimg text"
-        "note note text"
-        "decor decor decor";
+        "nav     nav     nav"
+        "histimg histimg aboutme"
+        "histimg histimg aboutme"
+        "histimg histimg aboutme"
+        "histcap diagcap aboutme"
+        "diagimg diagimg aboutme"
+        "projs   projs   aboutme"
+        "res     res     res"
+        "decor   decor   decor";
         
     }
 }
@@ -40,49 +52,66 @@ body {
         grid-template-rows: auto auto auto auto auto auto auto auto;
 
         grid-template-areas: 
-        "nav     nav     ."
-        ".       .       time"
-        "histimg histimg title"
-        "histimg histimg abstr"
-        "histimg histimg text"
-        "histcap diagcap text"
-        "diagimg diagimg text"
-        "note note decor";
+        "nav     nav     nav"
+        "histimg histimg aboutme"
+        "histimg histimg aboutme"
+        "histimg histimg aboutme"
+        "histcap diagcap aboutme"
+        "diagimg diagimg aboutme"
+        "projs   projs   projs"
+        "res     res     res";
     }
 }
 
-#navigation { grid-area: nav;}
+header { grid-area: nav;}
 #hist-image { grid-area: histimg;}
 #hist-caption { grid-area: histcap;}
 #diag-caption { grid-area: diagcap;}
 #diagram-image { grid-area: diagimg;}
 #timeframe { grid-area: time;}
-#title { grid-area: title;}
-#abstract { grid-area: abstr;}
-#text { grid-area: text;}
-#sticky-note { grid-area: note;}
+#about-me { grid-area: aboutme;}
+#projects { grid-area: projs;}
+#resume { grid-area: res;}
 #decor-images { grid-area: decor;}
 
 /* Handles flexbox for nav, sticky note, and decor on wide */
 @media screen and (min-width: 850px) {
-    #navigation {
+    header {
         position: sticky;
         text-align: center;
         top: 0px;
-        display: flex;
-        justify-content: center;
         z-index: 5;
+        
     }
-    #navigation img {
+    header img {
         border-radius: 0px 0px 3rem 0rem;
         flex: 0 1 400px;
     }
-    #navigation p {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        white-space: nowrap;
+    header ul {
+        list-style-type: none;
+        display: flex;
+        justify-content: space-around;
+        padding: 0%;
+        margin: 0% 20px;
+        background-color: transparent;
+    }
+    header ul li {
+        float: left;
+        border-radius: 10px 10px 0px 0px;
+        width: 100%;
+        border-left: 2px solid Black;
+        border-top: 2px solid black;
+        text-decoration: none;
+        background-color: #70C1B3;
+    }
+    header ul li a {
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        color: black;
+    }
+    header ul li:last-child {
+        border-right: 2px solid black;
     }
 
     #sticky-note {
@@ -112,26 +141,15 @@ body {
         margin: 0 2.5rem;
     }
 
-    #decor-images {
-        display: flex;
-        justify-content: center;
-        margin: 1rem 0 0 0;
-
-    }
-    #decor-images img {
-        flex: 0 1 400px;
-        align-self: center;
-        width: 50%;
-    }
 }
 
 img {
     width: 100%;
 }
 
-#navigation {
-    font-family: 'Creepster', cursive;
-    font-size: 40px;
+header {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
 }
 
 #hist-image, #diagram-image {
@@ -150,8 +168,12 @@ img {
     transform: scale(.8) rotate(-15deg);
 }
 
-#timeframe, #title, #abstract, #text {
+#title, #abstract, #text {
     margin: .2rem 1rem;
+}
+#title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 60px;
 }
 
 #sticky-note {
@@ -163,31 +185,18 @@ img {
 #sticky-note p {
     font-size:medium;
 }
-#timeframe {
-    font-family: 'Stardos Stencil', cursive;
-    font-size: xx-large;
-    color: darkgrey;
-}
-#title {
-    font-family: 'Creepster', cursive;
-    font-size: 60px;
-}
+
 
 /* Increase font sizes on really large screens */
 @media screen and (min-width: 1400px){
-    #navigation{
-        font-size: 50px;
+    header {
+        font-size: 45px;
     }
     #sticky-note strong {
         font-size: xx-large;
     }
     #sticky-note p {
         font-size:medium;
-    }
-    #timeframe {
-        font-family: 'Stardos Stencil', cursive;
-        font-size: xxx-large;
-        color: darkgrey;
     }
     #title {
         font-size: 90px;
@@ -199,3 +208,9 @@ img {
         font-size: large;
     }
 }
+
+a:link {  }
+a:visited { }
+a:focus { }
+a:hover { }
+a:active { }
