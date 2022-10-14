@@ -1,62 +1,44 @@
 html {scroll-behavior: smooth;}
+body { margin: 0;}
 
 #wrapper {
     margin: 0rem;
 
-    display: grid;
-    grid-template-areas: 
-        "nav        nav"
-        "aboutme    aboutme"
-        "aboutme    aboutme"
-        "aboutme    aboutme"
-        "histimg    histimg"
-        "histcap    diagcap"
-        "diagimg    diagimg"
-        "projs      projs"
-        "res        res"
-        "contact    contact";
+    display: flex;
+    flex-flow: column;
     
     background-image: url(../media/woodWallpaper2.jpg);
     background-repeat: round;
 }
 
-
-
-@media screen and (min-width: 850px) {
-    body {
-        grid-template-columns: 1fr 1fr 3fr;
-        grid-template-rows: auto auto auto auto auto auto auto auto;
+@media screen and (min-width: 800px) {
+    #wrapper {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        grid-template-rows: auto auto auto auto auto auto;
 
         grid-template-areas: 
-        "nav     nav     nav"
-        "histimg histimg aboutme"
-        "histimg histimg aboutme"
-        "histimg histimg aboutme"
-        "histcap diagcap aboutme"
-        "diagimg diagimg aboutme"
-        "projs   projs   aboutme"
-        "res     res     res"
-        "contact contact contact"
-        "decor   decor   decor";
-        
+        "nav     nav"
+        "histimg aboutme"
+        "histcap aboutme"
+        "projs   projs"
+        "res     res"
+        "contact contact";
     }
 }
 
 @media screen and (min-width: 1100px) {
     #wrapper {
-        grid-template-columns: 1fr 1fr 4fr;
-        grid-template-rows: auto auto auto auto auto auto auto auto;
+        grid-template-columns: 2fr 4fr;
+        grid-template-rows: auto auto auto auto auto auto;
 
         grid-template-areas: 
-        "nav     nav     nav"
-        "histimg histimg aboutme"
-        "histimg histimg aboutme"
-        "histimg histimg aboutme"
-        "histcap diagcap aboutme"
-        "diagimg diagimg aboutme"
-        "projs   projs   projs"
-        "res     res     res"
-        "contact contact contact";
+        "nav     nav"
+        "histimg aboutme"
+        "histcap aboutme"
+        "projs   projs"
+        "res     res"
+        "contact contact";
     }
 }
 
@@ -68,63 +50,79 @@ html {scroll-behavior: smooth;}
     zoom:150%;
 }
 
-#contact iframe {
-    margin: 0 auto;
-    
-}
-
 header { grid-area: nav;}
 #hist-image { grid-area: histimg;}
 #hist-caption { grid-area: histcap;}
-#diag-caption { grid-area: diagcap;}
-#diagram-image { grid-area: diagimg;}
-#timeframe { grid-area: time;}
 #about-me { grid-area: aboutme;}
 #projects { grid-area: projs;}
 #resume { grid-area: res;}
 #contact { grid-area: contact}
-#decor-images { grid-area: decor;}
+
+header {
+    position: sticky;
+    text-align: center;
+    top: 0px;
+    z-index: 5;
+    background-image: url(../media/woodWallpaper2.jpg);
+}
+header ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0%;
+    margin: 0% 20px;
+    background-color: transparent;
+    font-size: 20px;
+    
+}
+header ul li {
+    float: left;
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+    border-left: 2px solid Black;
+    border-top: 2px solid black;
+    text-decoration: none;
+    background-color: #70C1B3;
+}
+header ul li a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+header ul li:last-child {
+    border-right: 2px solid black;
+}
+
+#projects div {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 80%;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#projects-spellblade img {
+    width: 100%;
+}
+#projects-tfoo img {
+    width: 100%;
+}
+#projects-minesweeper img {
+    width: 100%;
+}
 
 /* Handles flexbox for nav, sticky note, and decor on wide */
-@media screen and (min-width: 850px) {
-    header {
-        position: sticky;
-        text-align: center;
-        top: 0px;
-        z-index: 5;
-        background-image: url(../media/woodWallpaper2.jpg);
-    }
-    header img {
-        border-radius: 0px 0px 3rem 0rem;
-        flex: 0 1 400px;
-    }
+@media screen and (min-width: 800px) {
     header ul {
-        list-style-type: none;
-        display: flex;
-        justify-content: space-around;
-        padding: 0%;
-        margin: 0% 20px;
-        background-color: transparent;
-        
+        font-size: 30px;
     }
-    header ul li {
-        float: left;
-        border-radius: 10px 10px 0px 0px;
-        width: 100%;
-        border-left: 2px solid Black;
-        border-top: 2px solid black;
-        text-decoration: none;
-        background-color: #70C1B3;
+
+    #about-me{
+        width: 90%;
     }
-    header ul li a {
-        display: block;
-        text-align: center;
-        text-decoration: none;
-        color: black;
-    }
-    header ul li:last-child {
-        border-right: 2px solid black;
-    }
+
+    
 
     #sticky-note {
         position: relative;
@@ -153,15 +151,22 @@ header { grid-area: nav;}
         margin: 0 2.5rem;
     }
 
-}
+    #contact-types {
+        display: flex;
+        justify-content:space-evenly;
+        align-items: center;
+        flex-flow: row nowrap;
+        padding: 0 0 4rem 0;
+    }
+    #contact-icons {
+        display: flex;
+        flex-flow: column nowrap;
 
-img {
-    width: 100%;
+    }
 }
 
 header {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
 }
 
 #aboutme, #projects, #resume, #contact {
@@ -169,31 +174,35 @@ header {
 }
 
 
-#hist-image, #diagram-image {
-    padding: 0rem 1rem;
-    width: 500px;
+#hist-image {
+    padding: 0rem 0rem;
+    align-content: center;
+    margin: 0 auto;
 }
-#diag-caption, #hist-caption {
-    padding: 0rem 1rem;
+#hist-caption {
+    padding: 0rem 4rem;
     font-size: smaller;
+    margin: 0 auto;
 }
 #hist-image img {
     border: 10px solid white;
     filter: drop-shadow(-5px 5px 5px black);
-    transform: scale(.8) ;
-}
-#diagram-image img {
-    border: 10px solid white;
-    filter: drop-shadow(-5px 5px 5px black);
-    transform: scale(.8) rotate(-15deg);
+    transform: scale(.8);
+    max-width: 300px;
 }
 
 #title, #abstract, #text {
-    margin: .2rem 1rem;
+    margin: 0rem 1rem;
 }
 #title {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 60px;
+    text-align: center;
+}
+#abstract {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    text-align: center;
 }
 
 #sticky-note {
@@ -204,29 +213,6 @@ header {
 }
 #sticky-note p {
     font-size:medium;
-}
-
-
-/* Increase font sizes on really large screens */
-@media screen and (min-width: 1400px){
-    header {
-        font-size: 45px;
-    }
-    #sticky-note strong {
-        font-size: xx-large;
-    }
-    #sticky-note p {
-        font-size:medium;
-    }
-    #title {
-        font-size: 90px;
-    }
-    #diag-caption, #hist-caption {
-        font-size: large;
-    }
-    #text, #abstract {
-        font-size: large;
-    }
 }
 
 a:link {  }
