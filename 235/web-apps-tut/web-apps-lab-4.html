@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Web Apps-4-HW</title>
+    <style>
+        body {
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Favorites</h1>
+    <h2>My Favorite Colors</h2>
+
+    <ol id="colorsList">
+
+    </ol>
+
+    <h2>My Favorite Foods</h2>
+
+    <ol id="foodsList">
+
+    </ol>
+
+    <h2>My Favorite Links</h2>
+
+    <ol id="linksList">
+
+    </ol>
+
+    <script>
+        "use strict";
+        let colors = ["Blue", "Green", "Red", "Purple", "Silver"];
+        let foods = ["Pupusas", "Pizza", "Burger", "Fried Chicken", "Subs"]; // add some foods
+
+        // Add the colors as list items
+        let listNodes = document.body.querySelectorAll("ol");
+
+
+        let createList = (listElement, array = ["puppydogs", "butterflies", "lollipops"]) => 
+        {
+            //you write the rest
+            for (let item of array) {
+                let listItem = document.createElement("li")
+                listItem.innerHTML = item;
+                listElement.appendChild(listItem);
+            }
+        }
+
+        createList(listNodes[0], colors);
+
+        // Add the foods as list items
+        createList(listNodes[1], foods);
+
+        // Optional - can you figure out how to pull both the key AND the value
+        // from the `links` object literal?
+        let links = {
+            "Youtube": "http://www.youtube.com",
+            "Github": "https://github.com/",
+            "Royal Road": "https://www.royalroad.com/home"
+        };
+
+        for (let key in links) {
+            let listItem = document.createElement("li");
+            let link = document.createElement("a");
+            link.innerHTML = key;
+            link.href = links[key];
+            listItem.appendChild(link);
+
+            listNodes[2].appendChild(listItem);
+        }
+
+        // function createList(listElement, array = ["puppydogs", "butterflies", "lollipops"]) {
+        //     // you write the rest
+        //     for (let item of array) {
+        //         let listItem = document.createElement("li")
+        //         listItem.innerHTML = item;
+        //         listElement.appendChild(listItem);
+        //     }
+        // } 
+
+        
+
+    </script>
+</body>
+
+</html>

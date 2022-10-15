@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Web Apps-4-HW</title>
+    <style>
+        body {
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Favorites</h1>
+    <h2>My Favorite Colors</h2>
+
+    <ol id="colorsList">
+
+    </ol>
+
+    <h2>My Favorite Foods</h2>
+
+    <ol id="foodsList">
+
+    </ol>
+
+    <h2>My Favorite Links</h2>
+
+    <ol id="linksList">
+
+    </ol>
+
+    <script>
+        "use strict";
+        let colors = ["Blue", "Green", "Red", "Purple", "Silver"];
+        let foods = ["Pupusas", "Pizza", "Burger", "Fried Chicken", "Subs"]; // add some foods
+
+        // Add the colors as list items
+        let listNodes = document.body.querySelectorAll("ol");
+
+        for (let i = 0; i < colors.length; i++) {
+            let listItem = document.createElement("li")
+            listItem.innerHTML = colors[i];
+            listNodes[0].appendChild(listItem);
+        }
+
+        // Add the foods as list items
+        for (let food of foods) {
+            let listItem = document.createElement("li")
+            listItem.innerHTML = food;
+            listNodes[1].appendChild(listItem);
+        }
+
+        // Optional - can you figure out how to pull both the key AND the value
+        // from the `links` object literal?
+        let links = {
+            "Youtube": "http://www.youtube.com",
+            "Github": "https://github.com/",
+            "Royal Road": "https://www.royalroad.com/home"
+        };
+
+        for (let key in links) {
+            let listItem = document.createElement("li");
+            let link = document.createElement("a");
+            link.innerHTML = key;
+            link.href = links[key];
+            listItem.appendChild(link);
+
+            listNodes[2].appendChild(listItem);
+        }
+
+    </script>
+</body>
+
+</html>
