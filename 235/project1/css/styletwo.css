@@ -156,7 +156,7 @@ header ul li:last-child {
         justify-content:space-evenly;
         align-items: center;
         flex-flow: row nowrap;
-        padding: 0 0 4rem 0;
+        padding: 40px 0 4rem 0;
     }
     #contact-icons {
         display: flex;
@@ -165,6 +165,7 @@ header ul li:last-child {
     }
 }
 
+/* Text formatting */
 header {
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -214,6 +215,23 @@ header {
 #sticky-note p {
     font-size:medium;
 }
+
+/* Make backgrounds for sections */
+@media screen and (min-width: 800px) {
+
+
+    #contact-form {
+        background-image: url(../media/graphPaperNotebook.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 40px 80px;
+        margin: -40px;
+    }
+
+
+}
+
 
 a:link {  }
 a:visited { }
