@@ -94,7 +94,21 @@ header ul li:last-child {
     border-right: 2px solid black;
 }
 
-#projects div {
+#projects-spellblade {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 80%;
+    align-items: center;
+    margin: 0 auto;
+}
+#projects-tfoo {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 80%;
+    align-items: center;
+    margin: 0 auto;
+}
+#projects-minesweeper {
     display: flex;
     flex-flow: column nowrap;
     width: 80%;
@@ -112,6 +126,8 @@ header ul li:last-child {
     width: 100%;
 }
 
+
+
 /* Handles flexbox for nav, sticky note, and decor on wide */
 @media screen and (min-width: 800px) {
     header ul {
@@ -122,33 +138,39 @@ header ul li:last-child {
         width: 90%;
     }
 
-    
+    #projects h2 { grid-area: title;}
+    #projects p { grid-area: descr;}
+    #projects img { grid-area: scene;}
 
-    #sticky-note {
-        position: relative;
-        text-align: left;
-        top: 0px;
-        display: flex;
-        justify-content: center;
-        margin: 1rem 0 0 0;
-    }
-    #sticky-note img {
-        flex: 0 1 400px;
-        align-self:flex-start;
+    #projects-spellblade {
+        display: grid;
+        grid-template-columns: 2fr 2fr;
+        grid-template-rows: auto auto;
 
+        grid-template-areas: 
+        "scene title"
+        "scene descr";
+        width: 90%;
     }
-    #sticky-note strong {
-        position: absolute;
-        top: 15%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    #projects-tfoo {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        grid-template-rows: auto auto;
+
+        grid-template-areas: 
+        "title scene"
+        "descr scene";
+        width: 90%;
     }
-    #sticky-note p {
-        position: absolute;
-        top: 50%;
-        left: 20%;
-        transform: translate(-20%, -50%);
-        margin: 0 2.5rem;
+    #projects-minesweeper {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        grid-template-rows: auto auto;
+
+        grid-template-areas: 
+        "scene title"
+        "scene descr";
+        width: 90%;
     }
 
     #contact-types {
@@ -174,6 +196,10 @@ header {
     padding-top: 50px;
 }
 
+h2 {
+    margin: 0 2rem;
+    display: inline;
+}
 
 #hist-image {
     padding: 0rem 0rem;
@@ -206,15 +232,6 @@ header {
     text-align: center;
 }
 
-#sticky-note {
-    font-family: 'Permanent Marker', cursive;
-}
-#sticky-note strong {
-    font-size: x-large;
-}
-#sticky-note p {
-    font-size:medium;
-}
 
 /* Make backgrounds for sections */
 @media screen and (min-width: 800px) {
