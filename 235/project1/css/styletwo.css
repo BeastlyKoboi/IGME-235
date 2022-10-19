@@ -94,6 +94,12 @@ header ul li:last-child {
     border-right: 2px solid black;
 }
 
+h2 {
+    background-image: url(../media/);
+    background-size: contain;
+    padding: 10px;
+}
+
 #projects-spellblade {
     display: flex;
     flex-flow: column nowrap;
