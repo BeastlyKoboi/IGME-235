@@ -15,27 +15,31 @@ body { margin: 0;}
     #wrapper {
         display: grid;
         grid-template-columns: 2fr 3fr;
-        grid-template-rows: auto auto auto auto auto auto;
+        grid-template-rows: auto auto auto auto;
 
         grid-template-areas: 
-        "nav     nav"
-        "histimg aboutme"
-        "histcap aboutme"
+        "about   about"
         "projs   projs"
         "res     res"
         "contact contact";
+    }
+    #about {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        grid-template-rows: auto auto auto auto;
+
+        grid-template-areas: 
+        "hist aboutme";
     }
 }
 
 @media screen and (min-width: 1100px) {
     #wrapper {
         grid-template-columns: 2fr 4fr;
-        grid-template-rows: auto auto auto auto auto auto;
+        grid-template-rows: auto auto auto auto;
 
         grid-template-areas: 
-        "nav     nav"
-        "histimg aboutme"
-        "histcap aboutme"
+        "about   about"
         "projs   projs"
         "res     res"
         "contact contact";
@@ -51,6 +55,8 @@ body { margin: 0;}
 }
 
 header { grid-area: nav;}
+#about { grid-area: about;}
+#hist { grid-area: hist;}
 #hist-image { grid-area: histimg;}
 #hist-caption { grid-area: histcap;}
 #about-me { grid-area: aboutme;}
@@ -77,12 +83,11 @@ header ul {
 }
 header ul li {
     float: left;
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 0px 0px 10px 10px;
     width: 100%;
     border-left: 2px solid Black;
-    border-top: 2px solid black;
+    border-bottom: 2px solid black;
     text-decoration: none;
-    background-color: #70C1B3;
 }
 header ul li a {
     display: block;
@@ -93,6 +98,11 @@ header ul li a {
 header ul li:last-child {
     border-right: 2px solid black;
 }
+#navigation-home { background-color: #f4c9c9;}
+#navigation-proj { background-color: #eaf2bf;}
+#navigation-res { background-color: #bee3c6;}
+#navigation-cont { background-color: #cecbe3;}
+/* extra color: #bde4ea */
 
 h2 {
     background-image: url(../media/);
@@ -105,31 +115,40 @@ h2 {
     flex-flow: column nowrap;
     width: 80%;
     align-items: center;
-    margin: 0 auto;
+    margin: 1rem auto;
+    padding: 1rem 0;
 }
 #projects-tfoo {
     display: flex;
     flex-flow: column nowrap;
     width: 80%;
     align-items: center;
-    margin: 0 auto;
+    margin: 1rem auto;
+    padding: 1rem 0;
 }
 #projects-minesweeper {
     display: flex;
     flex-flow: column nowrap;
     width: 80%;
     align-items: center;
-    margin: 0 auto;
+    margin: 1rem auto;
+    padding: 1rem 0;
 }
 
 #projects-spellblade img {
     width: 100%;
+    /* border: 10px solid white;
+    filter: drop-shadow(-5px 5px 5px black); */
 }
 #projects-tfoo img {
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
+    /* border: 10px solid white;
+    filter: drop-shadow(-5px 5px 5px black); */
 }
 #projects-minesweeper img {
     width: 100%;
+    /* transform: rotate(-5deg); */
 }
 
 
@@ -140,56 +159,114 @@ h2 {
         font-size: 30px;
     }
 
-    #about-me{
-        width: 90%;
+    /* #about {
+        background-image: url(../media/clipboard3.jpeg);
+        background-size: 90vw;
+        background-repeat: no-repeat;
+        background-position: top center;
+        border-radius: 10px;
+    } */
+
+    #about-me {
+        width: 80%;
+        
+        
     }
 
-    #projects h2 { grid-area: title;}
-    #projects p { grid-area: descr;}
     #projects img { grid-area: scene;}
+    #projects div { grid-area: projtext;}
 
     #projects-spellblade {
         display: grid;
-        grid-template-columns: 2fr 2fr;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
 
         grid-template-areas: 
-        "scene title"
-        "scene descr";
+        "scene projtext";
         width: 90%;
+        
     }
     #projects-tfoo {
         display: grid;
-        grid-template-columns: 3fr 1fr;
+        grid-template-columns: 2fr 1fr;
         grid-template-rows: auto auto;
 
         grid-template-areas: 
-        "title scene"
-        "descr scene";
+        "projtext scene";
         width: 90%;
     }
     #projects-minesweeper {
         display: grid;
-        grid-template-columns: 1fr 3fr;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
 
         grid-template-areas: 
-        "scene title"
-        "scene descr";
+        "scene projtext";
         width: 90%;
+    }
+    #projects-spellblade div {
+        background-image: url(../media/indexCard1.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 40px 0;
+        margin: -40px 0;
+    }
+    #projects-tfoo div {
+        background-image: url(../media/indexCard1.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 40px 0;
+        margin: -40px 0;
+    }
+    #projects-minesweeper div {
+        background-image: url(../media/indexCard1.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 40px 0;
+        margin: -40px 0;
     }
 
     #contact-types {
         display: flex;
         justify-content:space-evenly;
-        align-items: center;
         flex-flow: row nowrap;
         padding: 40px 0 4rem 0;
     }
     #contact-icons {
         display: flex;
         flex-flow: column nowrap;
-
+        justify-content: space-around;
+        text-align: center;
+    }
+    #contact-icons img {
+        max-width: 5vw;
+    }
+    #contact-icons a:nth-child(1) {
+        background-image: url(../media/roundStickers3.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 30px;
+        margin: -30px;
+    }
+    #contact-icons a:nth-child(2) {
+        background-image: url(../media/roundStickers2.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 30px;
+        margin: -30px;
+    }
+    #contact-icons a:nth-child(3) {
+        background-image: url(../media/roundStickers4.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 30px;
+        margin: -30px;
     }
 }
 
@@ -207,10 +284,15 @@ h2 {
     display: inline;
 }
 
+#hist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 #hist-image {
     padding: 0rem 0rem;
     align-content: center;
-    margin: 0 auto;
+    
 }
 #hist-caption {
     padding: 0rem 4rem;
@@ -222,6 +304,7 @@ h2 {
     filter: drop-shadow(-5px 5px 5px black);
     transform: scale(.8);
     max-width: 300px;
+    margin: 0 auto;
 }
 
 #title, #abstract, #text {
@@ -234,8 +317,18 @@ h2 {
 }
 #abstract {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
+    font-size: 20px;
     text-align: center;
+}
+
+#projects h3 {
+    text-align: center;
+}
+#projects p {
+    font-size:smaller;
+    width: 90%;
+    text-align: left ;
+    margin: 0 auto;
 }
 
 
@@ -256,8 +349,8 @@ h2 {
 }
 
 
-a:link {  }
-a:visited { }
-a:focus { }
-a:hover { }
-a:active { }
+.navlinks a:link { color: black; }
+.navlinks a:visited { color: black; }
+.navlinks a:focus { color: black; text-decoration: none; }
+.navlinks a:hover { color: black; text-decoration: none; }
+.navlinks a:active { color: black; text-decoration: none; background-color: white; border-radius: 0px 0px 10px 10px;}
