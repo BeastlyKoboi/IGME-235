@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Web Apps-5</title>
+	<style>
+		body{
+			font-family:sans-serif;
+		}
+		#colorform{
+			background-color:#dfecdf;
+			color: #111;
+			padding:1em;width:400px;
+		}
+		#colorform p#info{
+			background-color:white;
+			color: black;
+			width:300px;
+			height:100px;
+			padding:.5em;
+		}
+		
+		#colorform legend{ 
+			font-weight:bold;
+			font-size:1.2em;
+		}
+	</style>
+</head>
+<body>
+
+<div id="colorform">
+	<legend>Choose your favorite color!</legend>
+	<p><input type="checkbox" name="colorGroup" id="colorGroupRed" value="red" /> Red</p>
+	<p><input type="checkbox" name="colorGroup" id="colorGroupGreen" value="green" /> Green</p>
+	<p><input type="checkbox" name="colorGroup" id="colorGroupBlue" value="blue" /> Blue</p>
+	<p><button id="colorButton" type="button">Submit</button></p>
+	<p id="info"></p>
+</div>
+
+<script>
+/* Write your code here! */
+
+// Arrow function to find all selected colors and print message with it
+let Submit = (e) => {
+    let selected = [];
+
+    for (let box of checkBoxes) {
+        if (box.checked)
+            selected.push(box);
+    }
+
+    if (selected.length == 0) {
+        output.innerHTML = `Select a color!`;
+    }
+    else {
+        output.innerHTML = `You have selected ${selected[0].value}`;
+        for (let i = 1; i < selected.length; i++) {
+            output.innerHTML += ` and ${selected[i].value}`;
+        }
+        output.innerHTML += `!`;
+    }
+}
+
+// Arrow function to find all selected colors and print message with it
+let Radio = (e) => {
+    let selected = [];
+
+    for (let box of checkBoxes) {
+        if (box.checked)
+            selected.push(box);
+    }
+
+    if (selected.length == 0) {
+        output.innerHTML = `Select a color!`;
+    }
+    else {
+        output.innerHTML = `You have selected ${selected[0].value}`;
+        for (let i = 1; i < selected.length; i++) {
+            output.innerHTML += ` and ${selected[i].value}`;
+        }
+        output.innerHTML += `!`;
+    }
+}
+
+// Saves the output p, the radio buttons, and submit button
+let output = document.querySelector("p[id='info']");
+let checkBoxes = document.querySelectorAll("input");
+let subButton = document.querySelector("button");
+
+// Adds event listener to radio buttons and submit button
+for (let button of checkBoxes) {
+    button.addEventListener("change", Radio);
+}
+subButton.addEventListener("click", Submit);
+
+</script>
+</body>
+</html>
