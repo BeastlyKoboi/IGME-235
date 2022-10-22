@@ -1,6 +1,6 @@
 body {
     margin: 0rem;
-
+    
     display: grid;
     grid-template-areas: 
         "nav        nav"

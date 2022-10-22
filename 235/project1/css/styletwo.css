@@ -86,8 +86,10 @@ header ul li {
     border-radius: 0px 0px 10px 10px;
     width: 100%;
     border-left: 2px solid Black;
+    border-right: 2px solid Black;
     border-bottom: 2px solid black;
     text-decoration: none;
+    transition: transform 0.25s ease-out;
 }
 header ul li a {
     display: block;
@@ -104,11 +106,24 @@ header ul li:last-child {
 #navigation-cont { background-color: #cecbe3;}
 /* extra color: #bde4ea */
 
-h2 {
-    background-image: url(../media/);
-    background-size: contain;
-    padding: 10px;
+#about-me {
+    width: 80%;
+    background-image: url(../media/paperCrumpled4.jpeg);
+    margin: 1rem auto;
 }
+
+h2 {
+    margin: 10px auto;
+    padding: 5px 10px;
+    display: block;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    width:80%;
+}
+#projects h2 { background-color: #eaf2bf;}
+#resume h2 { background-color: #bee3c6;}
+#contact h2 { background-color: #cecbe3;}
 
 #projects-spellblade {
     display: flex;
@@ -153,7 +168,7 @@ h2 {
 
 
 
-/* Handles flexbox for nav, sticky note, and decor on wide */
+/* Handles grid for projects on wide and increases nav font size */
 @media screen and (min-width: 800px) {
     header ul {
         font-size: 30px;
@@ -167,11 +182,7 @@ h2 {
         border-radius: 10px;
     } */
 
-    #about-me {
-        width: 80%;
-        
-        
-    }
+    
 
     #projects img { grid-area: scene;}
     #projects div { grid-area: projtext;}
@@ -204,70 +215,7 @@ h2 {
         "scene projtext";
         width: 90%;
     }
-    #projects-spellblade div {
-        background-image: url(../media/indexCard1.png);
-        background-size: 100%;
-        background-repeat: no-repeat;
-        background-position: center;
-        padding: 40px 0;
-        margin: -40px 0;
-    }
-    #projects-tfoo div {
-        background-image: url(../media/indexCard1.png);
-        background-size: 100%;
-        background-repeat: no-repeat;
-        background-position: center;
-        padding: 40px 0;
-        margin: -40px 0;
-    }
-    #projects-minesweeper div {
-        background-image: url(../media/indexCard1.png);
-        background-size: 100%;
-        background-repeat: no-repeat;
-        background-position: center;
-        padding: 40px 0;
-        margin: -40px 0;
-    }
-
-    #contact-types {
-        display: flex;
-        justify-content:space-evenly;
-        flex-flow: row nowrap;
-        padding: 40px 0 4rem 0;
-    }
-    #contact-icons {
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: space-around;
-        text-align: center;
-    }
-    #contact-icons img {
-        max-width: 5vw;
-    }
-    #contact-icons a:nth-child(1) {
-        background-image: url(../media/roundStickers3.png);
-        background-size: 100%;
-        background-repeat: no-repeat;
-        background-position: center;
-        padding: 30px;
-        margin: -30px;
-    }
-    #contact-icons a:nth-child(2) {
-        background-image: url(../media/roundStickers2.png);
-        background-size: 100%;
-        background-repeat: no-repeat;
-        background-position: center;
-        padding: 30px;
-        margin: -30px;
-    }
-    #contact-icons a:nth-child(3) {
-        background-image: url(../media/roundStickers4.png);
-        background-size: 100%;
-        background-repeat: no-repeat;
-        background-position: center;
-        padding: 30px;
-        margin: -30px;
-    }
+    
 }
 
 /* Text formatting */
@@ -277,11 +225,6 @@ header {
 
 #aboutme, #projects, #resume, #contact {
     padding-top: 50px;
-}
-
-h2 {
-    margin: 0 2rem;
-    display: inline;
 }
 
 #hist {
@@ -295,9 +238,14 @@ h2 {
     
 }
 #hist-caption {
-    padding: 0rem 4rem;
+    padding: 0rem 5rem;
     font-size: smaller;
     margin: 0 auto;
+}
+#hist-caption p {
+    border-radius: 5px;
+    background-color: aliceblue;
+    padding: 1rem;
 }
 #hist-image img {
     border: 10px solid white;
@@ -331,11 +279,143 @@ h2 {
     margin: 0 auto;
 }
 
+#projects-spellblade div {
+    background-image: url(../media/indexCard1.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px 0;
+    margin: 10px 0;
+}
+#projects-tfoo div {
+    background-image: url(../media/indexCard1.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px 0;
+    margin: 10px 0;
+}
+#projects-minesweeper div {
+    background-image: url(../media/indexCard1.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px 0;
+    margin: 10px 0;
+}
+
+
+#contact-types {
+    display: flex;
+    justify-content:space-evenly;
+    flex-flow: column nowrap;
+    padding: 40px 0 4rem 0;
+}
+#contact-form {
+    background-image: url(../media/graphPaperNotebook.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top;
+    align-content: center;
+    padding: 10px 20px;
+    margin: -10px;
+}
+
+#contact-form iframe {
+    width: 400px; 
+    height: 500px;
+    display: block;
+    margin: 0 auto;
+}
+#contact-icons {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 60px;
+    
+}
+#contact-icons img {
+    max-width: 5vw;
+}
+#contact-icons a:nth-child(1) {
+    background-image: url(../media/roundStickers3.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 30px;
+    margin: -30px;
+}
+#contact-icons a:nth-child(2) {
+    background-image: url(../media/roundStickers2.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 30px;
+    margin: -30px;
+}
+
+@media screen and (max-width: 450px){
+    
+    #projects-spellblade div {
+        padding: 20px 0 40px 0;
+        margin: 0 -40px 0;
+        
+    }
+    #projects-tfoo div {
+        padding: 20px 0 40px 0;
+        margin: 0 -40px 0;
+    }
+    #projects-minesweeper div {
+        padding: 20px 0 40px 0;
+        margin: 0 -40px 0;
+    }
+
+    #contact-form iframe {
+        width: 300px; 
+        height: 400px;
+        display: block;
+        margin: 0 auto;
+    }
+    #contact-icons a:nth-child(1) {
+        background-size: 80%;
+    }
+    #contact-icons a:nth-child(2) {
+        background-size: 80%;
+        
+    }
+}
 
 /* Make backgrounds for sections */
 @media screen and (min-width: 800px) {
 
 
+h2 {
+    margin: 10px auto;
+    padding: 5px 10px;
+    display: inline;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+    #projects-spellblade div {
+        padding: 40px 0;
+        margin: -40px 0;
+    }
+    #projects-tfoo div {
+        padding: 40px 0;
+        margin: -40px 0;
+    }
+    #projects-minesweeper div {
+        padding: 40px 0;
+        margin: -40px 0;
+    }
+
+    #contact-types {
+        display: flex;
+        justify-content:space-evenly;
+        flex-flow: row nowrap;
+        padding: 40px 0 4rem 0;
+    }
     #contact-form {
         background-image: url(../media/graphPaperNotebook.png);
         background-size: 100%;
@@ -344,13 +424,44 @@ h2 {
         padding: 40px 80px;
         margin: -40px;
     }
-
+    #contact-form iframe {
+        width: 450px; 
+    }
+    #contact-icons {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-around;
+        text-align: center;
+    }
+    #contact-icons img {
+        max-width: 5vw;
+    }
+    #contact-icons a:nth-child(1) {
+        background-image: url(../media/roundStickers3.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 30px;
+        margin: -30px;
+    }
+    #contact-icons a:nth-child(2) {
+        background-image: url(../media/roundStickers2.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 30px;
+        margin: -30px;
+    }
 
 }
 
+
+.navlinks li:hover { transform: scale(1.15);}
 
 .navlinks a:link { color: black; }
 .navlinks a:visited { color: black; }
 .navlinks a:focus { color: black; text-decoration: none; }
 .navlinks a:hover { color: black; text-decoration: none; }
 .navlinks a:active { color: black; text-decoration: none; background-color: white; border-radius: 0px 0px 10px 10px;}
+
+
