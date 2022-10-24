@@ -1,39 +1,83 @@
-
-header {
-    text-align: center;
+body {
+    background-color: #A480CF;
 }
+
+header h1 {
+    text-align: center;
+    margin: 0;
+    color: white;
+    font-family: 'VT323', monospace;
+    text-shadow: -3px -3px black;
+}
+
+img { width: 100%; }
 
 #wrapper {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
     align-items: center;
-}
-
-img {
-    width: 512px;
-    image-rendering: crisp-edges;
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    
+    margin: 0 auto;
+    width: 80%;
+    position: relative;
+    text-align: center;
 }
 
 #wrapper p {
     display: block;
     font-family: 'VT323', monospace;
+    font-size: 20px;
+    text-align: center;
+    
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: aliceblue;
+    /* background-color: black; */
+    
+}
+#wrapper img {
+    display: block;
+    margin: 0 auto;
+    max-width: 500px;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+}
+
+@media screen and (min-width: 200px){
+    #wrapper p {
+        font-size: 15px;
+        width: 100%;
+    }
+}
+@media screen and (min-width: 600px){
+    #wrapper p {
+        font-size: 25px;
+    }
+}
+@media screen and (min-width: 800px){
+    #wrapper p {
+        font-size: 30px;
+    }
+}
+
+footer {
+    font-family: 'VT323', monospace;
 }
 
 .button {
     display: block;
-    /* background-color: #4CAF50;
+    background-color: #9225b4;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 16px 50px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px; */
+    font-size: 20px;
+    font-family: 'VT323', monospace;
     transition: .25s ease-out;
   }
 
   .button:hover { transform: scale(1.25);}
-  .button:active { }
+  .button:active { background-color: white; transform: scale(1.5);}
