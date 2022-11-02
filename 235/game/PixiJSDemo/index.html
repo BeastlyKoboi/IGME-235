@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://pixijs.download/release/pixi.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <script>
+        let app = new PIXI.Application({
+            width: 640,
+            height: 360
+        });
+        
+        document.body.appendChild(app.view);
+
+        let sprite = PIXI.Sprite.from('sprites/UpgradeButton.png');
+
+        sprite.width = 160;
+        sprite.height = 160;
+
+        sprite.anchor.set(0.5, 0.5);
+
+        sprite.x = app.view.width / 2;
+        sprite.y = app.view.height / 2; 
+
+        const onClick = () => {
+            sprite.scale.x = Math.random() * 2;
+            sprite.scale.y = Math.random() * 2;
+        }
+        sprite.interactive = true; 
+        sprite.buttonMode = true; 
+        sprite.on('pointerdown', onClick);
+
+        let movingRight = true; 
+        app.ticker.add((deltaTime) => {
+        
+            if (movingRight) {
+                sprite.x += 1; 
+                if (sprite.x > app.view.width) {
+                    movingRight = false;
+                }
+            }
+            else {
+                sprite.x -= 1; 
+
+                if (sprite.x < 0) {
+                    movingRight = true;
+                }
+            }
+            
+
+        })
+
+        
+        app.stage.addChild(sprite);
+
+
+    </script>
+</body>
+</html>
