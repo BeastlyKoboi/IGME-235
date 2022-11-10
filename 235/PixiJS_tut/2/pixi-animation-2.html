@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Pixi Animation-2</title>
+</head>
+<body>
+
+<script>
+class Vehicle {
+  constructor(doors,wheels,occupants) {
+    this.doors = doors
+    this.wheels = wheels;
+    this.occupants = occupants;
+    this.moving = false;
+  }
+  start(){
+  	this.moving = true;
+  }
+  stop(){
+  	this.moving = false;
+  }
+}
+
+class Car extends Vehicle{
+	 constructor(doors,occupants,year,make,model) {
+	 	super(doors,4,occupants);
+	 	this.year = year;
+	 	this.make = make;
+	 	this.model = model;
+	 }
+	 
+	 honk(){
+	 	console.log(`Honk! I am a ${this.make} ${this.model}`);
+	 }
+}
+
+let car1 = new Car(4,5,2017,"Toyota","Corolla");
+car1.start(); 					// call .start() in base class
+car1.honk();					// Honk! I am a Toyota Corolla
+console.log(car1.moving); 			// true
+
+
+</script>
+</body>
+</html>

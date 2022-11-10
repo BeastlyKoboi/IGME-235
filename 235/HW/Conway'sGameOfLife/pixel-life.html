@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Pixel Arteur</title>
+	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/lifeworld.js"></script>
+
+</head>
+
+<body>
+	<div id="gridContainer"></div>
+	<h1>Life!</h1>
+	<select id="colorChooser">
+		<option value="aqua">Aqua</option>
+		<option value="Bisque">Bisque</option>
+		<option value="black">Black</option>
+		<option value="blue">Blue</option>
+		<option value="brown">Brown</option>
+		<option value="chocolate">Chocolate</option>
+		<option value="cyan">Cyan</option>
+		<option value="DarkGray">Dark Gray</option>
+		<option value="green">Green</option>
+		<option value="red" selected>Red</option>
+		<option value="magenta">Magenta</option>
+		<option value="orange">Orange</option>
+		<option value="tan">Tan</option>
+		<option value="white">White</option>
+		<option value="wheat">Wheat</option>
+		<option value="WhiteSmoke">WhiteSmoke </option>
+		<option value="yellow">Yellow</option>
+	</select>
+
+	<script>
+		// 1
+		const numCols = 70;
+		const numRows = 40;
+		const cellWidth = 10;
+		const cellSpacing = 1;
+
+		// 2 
+		const container = document.querySelector("#gridContainer");
+
+		// 3 
+		const span = document.createElement('span');
+		span.className = 'cell';
+
+		// 4 
+		const cells = [];
+
+		// 5 
+		for (let row = 0; row < numRows; row++) {
+
+			cells.push([]);
+
+			for (let col = 0; col < numCols; col++) {
+
+				let cell = span.cloneNode();
+				cell.style.left = `${col * (cellWidth + cellSpacing)}px`;
+				cell.style.top = `${row * (cellWidth + cellSpacing)}px`;
+				container.appendChild(cell);
+				cells[row][col] = cell;
+			}
+
+		}
+
+		// 6 
+		let color = "red";
+
+		// 7 
+		container.onclick = fillCell;
+
+		// 8 
+		function fillCell(e) {
+			let rect = container.getBoundingClientRect();
+			let mouseX = e.clientX - rect.left;
+			let mouseY = e.clientY - rect.top;
+			let columnWidth = cellWidth + cellSpacing;
+			let col = Math.floor(mouseX / columnWidth);
+			let row = Math.floor(mouseY / columnWidth);
+			let selectedCell = cells[row][col];
+			selectedCell.className = 'cellSelected';
+			selectedCell.style.backgroundColor = color;
+			console.log(`${col}, ${row}`);
+		}
+
+		// 9 
+		let mouseIsDown = false;
+
+		// 10 
+		container.onmousemove = (e) => {
+			e.preventDefault();
+			if (mouseIsDown) fillCell(e);
+		};
+
+		// 11
+		container.onmousedown = (e) => {
+			e.preventDefault();
+			mouseIsDown = true;
+		};
+
+		// 12
+		container.onmouseup = (e) => {
+			e.preventDefault();
+			mouseIsDown = false;
+		};
+
+		// 13 
+		document.querySelector("#colorChooser").onchange = (e) => {
+			color = e.target.value;
+		};
+
+		// Life Stuff
+
+		// 1
+		let lastUpdate = performance.now();
+
+		// 2
+		let lastFrame = performance.now();
+
+		// 3 
+		let maxFrameDelay = 1000 / 12;
+
+		
+		// 4
+		lifeworld.init(numCols, numRows);
+
+		// 5 
+		loop(performance.now());
+
+		// 6 
+		function loop(timestamp) {
+			requestAnimationFrame(loop);
+			lastUpdate = timestamp;
+			if (timestamp - lastFrame > maxFrameDelay) {
+				lastframe = timestamp;
+				
+				lifeworld.step();
+				updateGrid();
+			}
+		}
+
+		// 7
+		function updateGrid() {
+			for (let row = 0; row < numRows; row++) {
+				for (let col = 0; col < numCols; col++) {
+					let element = cells[row][col];
+					if (lifeworld.world[row][col] == 1) {
+						element.style.backgroundColor = "red";
+					}
+					else {
+						element.style.backgroundColor = "white";
+					}
+				}
+			}
+		}
+
+	</script>
+</body>
+
+</html>

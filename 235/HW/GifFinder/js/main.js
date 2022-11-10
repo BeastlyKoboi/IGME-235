@@ -54,8 +54,11 @@ function getData(url) {
     let xhr = new XMLHttpRequest();
 
     // Add spinner gif when loading, will get overwritten
-    let loadGIF = document.querySelector("#content").appendChild(document.createElement('img'));
-    loadGIF.src = '../images/spinner.gif';
+    // let loadGIF = document.querySelector("#content").appendChild(document.createElement('img'));
+    let loadGIF = document.createElement('img');
+    document.querySelector("#content").prepend(loadGIF);
+    loadGIF.src = "images/spinner.gif";
+   
     
     // 2 - set the onload handler
     xhr.onload = dataLoaded;
@@ -89,14 +92,14 @@ function dataLoaded(e) {
     // 9 - Start building an HTML string we will display to the user
     let results = obj.data; 
     console.log("results.length = " + results.length);
-    let bigString = "<p><i>Here are " + results.length + " results for '" + displayTerm + "'</i></p>";
+    let bigString = "";
 
     // 10 - loop through the array of results 
     for (let i = 0; i < results.length; i++) {
         let result = results[i];
 
         // 11 - get the URL to the GIF
-        let smallURL = result.images.fixed_width_small.url;
+        let smallURL = result.images.fixed_width_downsampled.url;
         if (!smallURL) smallURL = "images/no-image-found.png";
         
         // 12 - get the URL to the GIPHY Page
@@ -105,8 +108,8 @@ function dataLoaded(e) {
         // 13 - Build a <div> to hold each result
         // ES6 String Templating 
         let line = `<div class='result'><img src='${smallURL}' title= '${result.id}' />`;
-        line += `<span><a target='_blank' href='${url}'>View on Giphy</a></span>`;
-        line += `<span><p>Rating: ${result.rating.toUpperCase()}</p></span></div>`;
+        line += `<span><a target='_blank' href='${url}'>View on Giphy</a>`;
+        line += `<p>Rating: ${(result.rating? result.rating: "NA").toUpperCase()}</p></span></div>`;
 
         // 14 - another way of doing the same thing above 
         // 
@@ -119,7 +122,7 @@ function dataLoaded(e) {
     document.querySelector("#content").innerHTML = bigString;
 
     // 17 - update the status 
-    document.querySelector("#status").innerHTML = "<b>Success!</b>";
+    document.querySelector("#status").innerHTML = "<b>Success!</b><p><i>Here are " + results.length + " results for '" + displayTerm + "'</i></p>";
 }
 
 function dataError(e) {

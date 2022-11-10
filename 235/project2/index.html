@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="js/main.js"></script>
+
+    <title>Discount Games</title>
+</head>
+
+<body>
+
+    <div class="filters">
+        Title:
+        <input id="searchterm" type="text" size="20" maxlength="20" autofocus value="" />
+    </div>
+
+    <div>
+        <label for="pagelim">#</label>
+        <input type="number" id="pagelim" name="pagelim" min="1" max="60">
+        <label for="pagelim"> Games</label>
+    </div>
+
+    <div class="filters">
+        <select name="sorters" id="sort-select">
+            <option value="Deal Rating">Deal Rating</option>
+            <option value="Title">Title</option>
+            <option value="Savings">Savings</option>
+            <option value="Price">Price</option>
+            <option value="Metacritic">Metacritic</option>
+            <option value="Reviews">Reviews</option>
+            <option value="Release">Release</option>
+            <option value="Store">Store</option>
+            <option value="recent">Recent</option>
+        </select>
+    </div>
+
+    <div id="store-select">
+        <legend>Stores</legend>
+
+        <input type="checkbox" id="steam" name="store" value="1" />
+        <label for="steam">Steam</label>
+
+        <input type="checkbox" id="gamersgate" name="store" value="2" />
+        <label for="gamersgate">GamersGate</label>
+
+        <input type="checkbox" id="greenmangaming" name="store" value="3" />
+        <label for="greenmangaming">GreenManGaming</label>
+
+        <input type="checkbox" id="amazon" name="store" value="4" />
+        <label for="amazon">Amazon</label>
+
+        <input type="checkbox" id="gamestop" name="store" value="5" />
+        <label for="gamestop">GameStop</label>
+
+        <input type="checkbox" id="direct2drive" name="store" value="6" />
+        <label for="direct2drive">Direct2Drive</label>
+
+        <input type="checkbox" id="gog" name="store" value="7" />
+        <label for="gog">GoG</label>
+
+        <input type="checkbox" id="origin" name="store" value="8" />
+        <label for="origin">Origin</label>
+
+        <input type="checkbox" id="getgames" name="store" value="9" />
+        <label for="getgames">Get Games</label>
+
+        <input type="checkbox" id="shinyloot" name="store" value="10" />
+        <label for="shinyloot">Shiny Loot</label>
+        
+        <input type="checkbox" id="humblestore" name="store" value="11" />
+        <label for="humblestore">Humble Store</label>
+
+        <input type="checkbox" id="desura" name="store" value="12" />
+        <label for="desura">Desura</label>
+
+        <input type="checkbox" id="uplay" name="store" value="13" />
+        <label for="uplay">Uplay</label>
+
+        <input type="checkbox" id="indiegamestand" name="store" value="14" />
+        <label for="indiegamestand">IndieGameStand</label>
+
+        <input type="checkbox" id="fanatical" name="store" value="15" />
+        <label for="fanatical">Fanatical</label>
+
+        <input type="checkbox" id="gamesrocket" name="store" value="16" />
+        <label for="gamesrocket">Gamesrocket</label>
+
+        <input type="checkbox" id="gamesrepublic" name="store" value="17" />
+        <label for="gamesrepublic">Games Republic</label>
+        
+        <input type="checkbox" id="silagames" name="store" value="18" />
+        <label for="silagames">SilaGames</label>
+
+        <input type="checkbox" id="playfield" name="store" value="19" />
+        <label for="playfield">Playfield</label>
+
+        <input type="checkbox" id="imperialgames" name="store" value="20" />
+        <label for="imperialgames">ImperialGames</label>
+
+        <input type="checkbox" id="wingamestore" name="store" value="21" />
+        <label for="wingamestore">WinGameStore</label>
+
+        <input type="checkbox" id="funstockdigital" name="store" value="22" />
+        <label for="funstockdigital">FunStockDigital</label>
+
+        <input type="checkbox" id="gamebillet" name="store" value="23" />
+        <label for="gamebillet">GameBillet</label>
+
+        <input type="checkbox" id="voidu" name="store" value="24" />
+        <label for="voidu">Voidu</label>
+
+    </div>
+
+    <div>
+        <label for="maxprice">Max Price: $</label>
+        <input type="number" id="maxprice" name="maxprice" min="0" max="100">
+    </div>
+
+    <div>
+        <label for="minrating">Min Rating:</label>
+        <input type="number" id="minrating" name="minrating" min="1" max="100">
+    </div>
+
+    <div>
+        <button type="button" id="search" class="">Find a Deal!</button>
+    </div>
+
+    <div id="results">
+
+    </div>
+
+
+</body>
+
+</html>

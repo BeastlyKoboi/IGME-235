@@ -3,8 +3,9 @@
 }
 
  header{
-     background: url(images/cats.jpg);
-     height:195px;
+    background: url(../images/cats.jpg);
+    border-radius: 30px;
+    height:195px;
  }
  
  header h1{
@@ -17,10 +18,32 @@
  
  #status{
      font-style: italic;
-     height:32px;
+     /* height:32px; */
+ }
+
+ #content {
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px 20px;
+ }
+
+ .result {
+    display: flex;
+    flex-direction: column;
+ }
+
+ .result img {
+    width: 100%;
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,.4);
+ }
+
+ .result span {
+    order: -1;
  }
  
- .result {
+ /* .result {
     position: relative;
     height: 175px;
     width: 100px;
@@ -47,7 +70,7 @@
 
 .result audio{
     width: 130px;
-}
+} */
 
 button{
   display : inline-block;
@@ -84,6 +107,7 @@ button:active{
 button:focus {outline:0;}
 
 .widgets{
+    margin: 0 auto;
     margin-top: 1em;
     margin-bottom:1em;
 }
