@@ -20,12 +20,27 @@ const searchButtonClicked = () => {
         url += "&title=" + searchText;
     }
 
+    //
+    let stores = document.getElementsByName("store");
+    let storeCount = 0;
+    for (let i = 0; i < stores.length; i++) {
+        if (stores[i].checked) {
+            if (storeCount == 0) {
+                url += `&storeID=${stores[i].value}`;
+            }
+            else {
+                url += `,${stores[i].value}`;
+            }
+            storeCount++;
+        }
+    }
+
     // Add number of items per page
     let numItems = document.querySelector("#pagelim").value;
     if (numItems.length != 0) {
         url += "&pageSize=" + numItems;
     }
-    
+
 
     // Add max price 
     let maxPr = document.querySelector("#maxprice").value;
@@ -42,7 +57,12 @@ const searchButtonClicked = () => {
     url = url.trim().replace(/ /g, "%20");
 
     console.log(url);
-    getData(url);
+
+    if (storeCount == 0) {
+        document.querySelector("#results").innerHTML = "Please select at least one store!";
+    }
+    else
+        getData(url);
 };
 
 // Fetches the data and decides what happens
@@ -93,13 +113,32 @@ const dataError = () => {
     console.log("An error occurred")
 }
 
+const selectAllStores = () => {
+    let stores = document.getElementsByName("store");
+
+    for (let store of stores) {
+        store.checked = true;
+    }
+}
+const deselectAllStores = () => {
+    let stores = document.getElementsByName("store");
+
+    for (let store of stores) {
+        store.checked = false;
+    }
+}
 
 window.onload = () => {
     // fetch('https://www.cheapshark.com/api/1.0/deals?')
     // .then((response) => response.json())
     // .then((data) => {console.log(data); document.querySelector("#results").innerHTML = data;} )
     searchButtonClicked();
-    document.querySelector("#search").onclick = searchButtonClicked
+    document.querySelector("#search").onclick = searchButtonClicked;
+    document.querySelector("#select-all").onclick = selectAllStores;
+    document.querySelector("#select-none").onclick = deselectAllStores;
+
+    let stores = document.getElementsByName("store");
+
 }
 
 
