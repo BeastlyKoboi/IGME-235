@@ -1,7 +1,8 @@
-const stores = ["Steam", "GamersGate", "GreenManGaming", "Amazon", "GameStop", "Direct2Drive", "GoG",
-    "Origin", "Get Games", "Shiny Loot", "Humble Store", "Desura", "Uplay", "IndieGameStand", "Fanatical",
-    "Gamesrocket", "Games Republic", "SilaGames", "Playfield", "ImperialGames", "WinGameStore",
-    "FunStockDigital", "GameBillet", "Voidu", "Epic Games Store"];
+
+const storesMap = { "1": "Steam", "2": "GamersGate", "3": "GreenManGaming", "6": "Direct2Drive", "7": "GoG", "8": "Origin",  
+"11": "Humble Store",  "13": "Uplay", "15": "Fanatical", "21": "WinGameStore", "23": "GameBillet", "24": "Voidu", 
+"25": "Epic Games Store", "27": "Gamesplanet", "28": "Gamesload", "29": "2Game", "30": "IndieGala", "31": "Blizzard Shop", 
+"32": "AllYouPlay", "33": "DLGamer", "34": "Noctre"}
 
 // Creates the URL
 const searchButtonClicked = () => {
@@ -74,8 +75,9 @@ const getData = (url) => {
 
 // Formats and inserts data
 const dataLoaded = (e) => {
+    const data = e;
+    const dealURL = "https://www.cheapshark.com/redirect?dealID=";
 
-    let data = e;
     document.querySelector("#results").innerHTML = data[0];
     console.log(data[0]);
 
@@ -85,19 +87,26 @@ const dataLoaded = (e) => {
         let element = data[i];
         let game = "";
 
-        game += `<div>`;
-        game += `<h2>${element.title}</h2>`;
-        game += `<p>`;
-        game += `Steam Rating: ${element.steamRatingPercent}% ${element.steamRatingText}<br>`;
-        game += `Metacritic Score: ${element.metacriticScore}<br>`;
-        game += `${stores[element.storeID - 1]}<br>`;
-        game += `Deal Rating: ${element.dealRating}<br>`;
-        game += `$${element.normalPrice} -> $${element.salePrice}<br>`;
-        game += `${Math.round(element.savings)}% off!<br>`;
-        game += `<br>`;
-        game += `<br>`;
-        game += `<br>`;
-        game += `</p>`;
+        game += `<div class="game">`;
+        
+        game += `<img src="${element.thumb}" alt="thumbnail">`;
+        game += `<div class="description">`;
+        game += `<a href="${dealURL + element.dealID}">`;
+        game += `<h3>${element.title}</h3>`;
+        game += `</a>`;
+        game += `<p>${storesMap[element.storeID]}</p>`;
+
+        if (element.steamRatingText != null)
+            game += `<p>${element.steamRatingText} ${element.steamRatingPercent}%</p>`;
+        
+        if (element.metacriticScore != 0)
+            game += `<p>Metacritic: ${element.metacriticScore}</p>`;
+        
+        game += `<p>Deal Rating: ${element.dealRating}</p>`;
+        game += `<p>$${element.normalPrice} -> $${element.salePrice}</p>`;
+        game += `<p class="discount">${Math.round(element.savings)}% off!</p>`;
+        game += `</div>`;
+        
         game += `</div>`;
 
 
@@ -128,10 +137,52 @@ const deselectAllStores = () => {
     }
 }
 
+const loadLogos = () => {
+    // const baseLogoURL = "https://www.cheapshark.com/api/1.0/stores";
+
+    // const storeIDs = Object.keys(storesMap);
+
+    // const stores = document.getElementsByName("store");
+
+    // fetch(baseLogoURL)
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //         for (let i = 0; i < storeIDs.length; i++) {
+    //             console.log(data);
+    //             stores[i].innerHTML = data[parseInt(storeIDs[i])-1].images.logo;
+    //         }
+    //     });
+
+
+    
+
+    // const baseLogoURL = "https://www.cheapshark.com/img/stores/banners/";
+
+    // const storeIDs = Object.keys(storesMap);
+
+    // const stores = document.getElementsByName("store");
+
+    // for (let i = 0; i < storeIDs.length; i++) {
+
+    //     fetch(baseLogoURL + storeIDs[i] + ".png")
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //         for (let i = 0; i < storeIDs.length; i++) {
+    //             console.log(data);
+    //             stores[i].innerHTML = data;
+    //         }
+    //     });
+    // }
+    
+}
+
+
+
 window.onload = () => {
     // fetch('https://www.cheapshark.com/api/1.0/deals?')
     // .then((response) => response.json())
     // .then((data) => {console.log(data); document.querySelector("#results").innerHTML = data;} )
+    loadLogos();
     searchButtonClicked();
     document.querySelector("#search").onclick = searchButtonClicked;
     document.querySelector("#select-all").onclick = selectAllStores;

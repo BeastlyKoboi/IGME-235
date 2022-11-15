@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        const storesMap = { "1": "Steam", "2": "GamersGate", "3": "GreenManGaming", "6": "Direct2Drive", "7": "GoG", "8": "Origin",  
+"11": "Humble Store",  "13": "Uplay", "15": "Fanatical", "21": "WinGameStore", "23": "GameBillet", "24": "Voidu", 
+"25": "Epic Games Store", "27": "Gamesplanet", "28": "Gamesload", "29": "2Game", "30": "IndieGala", "31": "Blizzard Shop", 
+"32": "AllYouPlay", "33": "DLGamer", "34": "Noctre"}
+
+        const baseURL = "";
+
+        const baseLogoURL = "https://www.cheapshark.com/img/stores/logos/";
+
+        const storeIDs = Object.keys(storesMap);
+
+        const stores = document.getElementsByName("store");
+
+        for (let i = 0; i < storeIDs.length; i++) {
+
+            fetch(baseLogoURL + storeIDs[i] + ".png")
+                .then((response) => response.json())
+                .then((data) => {
+                    for (let i = 0; i < storeIDs.length; i++) {
+                        console.log(data);
+                        data.download
+                    }
+                });
+        }
+    </script>
+</body>
+
+</html>
