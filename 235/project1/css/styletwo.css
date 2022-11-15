@@ -46,6 +46,13 @@ body { margin: 0;}
     }
 }
 
+@media screen and (min-width: 1600px) {
+    #wrapper {
+        background-image: url(../media/woodWallpaper3.png);
+        background-repeat: round;
+    }
+}
+
 #resume embed {
     display: block; 
     margin: 0 auto; 
