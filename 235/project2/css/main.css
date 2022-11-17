@@ -7,7 +7,7 @@ body {
     padding: 0;
     background-color: #4C6793;
     color: aliceblue;
-    
+
 }
 
 header {
@@ -16,16 +16,20 @@ header {
     text-align: center;
     padding: 5px;
 }
+
 h1 {
     margin: 0;
 }
+
 h2 {
     margin: 0;
 }
+
 h3 {
     margin: 0;
     font-size: medium;
 }
+
 p {
     margin: 0;
     padding: 0;
@@ -39,28 +43,44 @@ p {
     margin: .5rem auto;
 }
 
+#base-filters #searchterm {
+    padding: 6px 10px;
+    border-radius: 10px;
+}
+
+#base-filters #sort-select {
+    background-color: rgb(204, 255, 204);
+    border-radius: 10px;
+    padding: 6px 10px;
+}
+
 #store-select {
     width: 95%;
     margin: 0 auto;
 }
+
 #store-select-logos {
     overflow-x: scroll;
     white-space: nowrap;
 }
+
 #store-select-logos img {
     height: 90px;
     padding: 5px
 }
+
 #store-select label {
     display: inline-block;
     height: 100px;
     border-radius: 20px;
 }
+
 #store-select input {
     appearance: none;
 }
-#store-select input:checked + label {
-    background-color:deeppink;
+
+#store-select input:checked+label {
+    background-color: deeppink;
 }
 
 
@@ -78,6 +98,39 @@ p {
     grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
     gap: 20px 20px;
 }
+
+.progress-bar {
+    height: 20px;
+    /* background-color: rgba(5, 114, 206, 0.2); */
+    background-color: rgb(204, 255, 204);
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.progress-bar-value {
+    width: 100%;
+    height: 100%;
+    background-color: #2ea44f;
+    /* background-color: rgb(5, 114, 206); */
+    animation: indeterminateAnimation 1s infinite linear;
+    transform-origin: 0% 50%;
+}
+
+@keyframes indeterminateAnimation {
+    0% {
+        transform: translateX(0) scaleX(0);
+    }
+
+    40% {
+        transform: translateX(0) scaleX(0.4);
+    }
+
+    100% {
+        transform: translateX(100%) scaleX(0.5);
+    }
+}
+
 #results .game {
     background-color: #8BBCCC;
     color: black;
@@ -85,6 +138,7 @@ p {
     display: grid;
     grid-template-rows: 200px min-content;
 }
+
 #results div img {
     width: 90%;
     max-width: 100%;
@@ -93,34 +147,43 @@ p {
     align-self: center;
     justify-self: center;
 }
+
 .description {
     padding: 5px 5px;
 }
+
 .discount {
     color: darkgreen;
     /* text-decoration:line-through; */
 }
 
+#pagenum-buttons {
+    display: flex;
+    width: 90%;
+    margin: 10px auto;
+    justify-content: space-between;
+}
+
 /* CSS */
 button {
-  background-color: #2ea44f;
-  border-radius: 12px;
-  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  padding: 6px 16px;
-  text-align: center;
+    background-color: #2ea44f;
+    border-radius: 12px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding: 6px 16px;
+    text-align: center;
 }
 
 button:hover {
-  background-color: #2c974b;
+    background-color: #2c974b;
 }
 
 button:active {
-  background-color: #298e46;
-  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+    background-color: #298e46;
+    box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
 }
