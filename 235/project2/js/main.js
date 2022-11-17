@@ -239,22 +239,31 @@ const saveToLocalStorage = () => {
 }
 const loadFromLocalStorage = () => {
     searchTermInput.value = localStorage.getItem(searchKey);
-    numItemsInput.value = localStorage.getItem(numItemsKey);
-    sortSelect.value = localStorage.getItem(sortSelectKey);
+
+    if (localStorage.getItem(numItemsKey) != null)
+        numItemsInput.value = localStorage.getItem(numItemsKey);
+
+    if (localStorage.getItem(sortSelectKey) != null)
+        sortSelect.value = localStorage.getItem(sortSelectKey);
 
     let storeIDs = JSON.parse(localStorage.getItem(storesSelectKey));
-    for (let i = 0; i < storesNodeList.length; i++) {
-        if (storesNodeList[i].value == storeIDs[0]) {
-            storesNodeList[i].checked = true;
-            storeIDs.shift();
+    if (storeIDs != null) {
+        for (let i = 0; i < storesNodeList.length; i++) {
+            if (storesNodeList[i].value == storeIDs[0]) {
+                storesNodeList[i].checked = true;
+                storeIDs.shift();
+            }
+            else
+                storesNodeList[i].checked = false;
         }
-        else
-            storesNodeList[i].checked = false;
     }
 
-    maxPrInput.value = localStorage.getItem(maxPriceKey);
-    minRevInput.value = localStorage.getItem(minReviewKey);
-    pageNumInput.value = localStorage.getItem(pageNumKey);
+    if (localStorage.getItem(maxPriceKey) != null)
+        maxPrInput.value = localStorage.getItem(maxPriceKey);
+    if (localStorage.getItem(minReviewKey) != null)
+        minRevInput.value = localStorage.getItem(minReviewKey);
+    if (localStorage.getItem(pageNumKey) != null)
+        pageNumInput.value = localStorage.getItem(pageNumKey);
 
 }
 
