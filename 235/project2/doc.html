@@ -25,10 +25,55 @@
         deal itself.
     </p>
 
-    <h2><a href="https://apidocs.cheapshark.com/" target="_blank">Cheapshark API</a></h2>
+    <h2>Process</h2>
+    <p>
+        I started out this project by making an attempt to prove I could actually get data from the 
+        Cheapshark API, which proved initially difficult since I was using the Fetch .then() method 
+        wrong. I figured out what happened after a while and was able to actually receive data, so I 
+        went on to do the HTML legwork of creating essential divs and adding basic inputs. The API 
+        docs were a very important guide to creating the URLs with the basic inputs. Adding the search
+        by stores functionality was probably the hardest part of this bit. I started out with the 
+        first twenty or so stores listed on the API as checkboxes, which would add the checked stores 
+        to the URL. I managed to have basic information inserted in the results div, after successfully
+        managing to parse that info. It was only later that I realized that many of the stores I listed 
+        were not active anymore, so they would not be valid options, yet would not throw an error. So I 
+        had to take a second look at all the stores and only have the active ones in the HTML and js.  
+        I then relized that the actual store names were not listed with the games returned, just the 
+        store IDs, which meant I either had to make another request to the API for it, or just have it
+        mapped out beforehand. I chose the latter because it seemed simpler. It was a similar situation
+        with the logos for each store's checkbox. The images themselves were on the API, but I could
+        not access them due to a CORS error that I could not get around. So, I found it simpler to just
+        download the images from the API and hard code it into the HTML. The CSS and many of the later 
+        non-essential stretch inputs were added concurrently. It was pretty often that a design need 
+        required some javascript and it in turn needed a new form of input. During this long period of 
+        adjustments, I decided that I was using the exact same query selectors a lot in my javascript 
+        that it might be better to just initialize them when the window loads and use them when needed. 
+        That may not be good practice, but it made sense at the time. I also realized later than I 
+        would have liked that I still did not do anything related to saving and getting from the 
+        localStorage. That definitely provided its own series of problems. One main one was accidentally 
+        saving null values to localStorage, then receiving them back causing errors. I ended up doing 
+        some null checking and deleting the saved data off my browser. I implemented an indeterminate
+        progress bar with inspiration from an example listed below. A considerable design barrier was 
+        the low resolution of the images from many stores, and the non-conforming aspect ratio to those
+        images. This forced my game results to be smaller than I wanted them to appear and gave many 
+        a great deal of white space. I decided after speaking with the professor to focus on making the 
+        discriptions level with each other was more important, so that it was more easily legible for 
+        the viewer. In the end I had to make a couple concessions in order to keep the spirit of my 
+        first design, while accounting for the aspects that I did not know how to make fit neatly. This 
+        project was definitely an exercise in flexibility and foresight. I am not completely happy with 
+        the look and feel of my website, but I do believe that the bones are strong. A good design sense 
+        has never been my strong suit, so I am at least thankful for my improvements. If I had to grade 
+        my own work, I would say that I believe I have more than met the hard technical requirements, 
+        but the softer design reqs were a struggle and do not make for the best viewer experience. I am 
+        incredibly biased, but I think I deserve an A for effort, a satisfactory in tech design, and a 
+        meh in UI/UX.
 
-    <h1>Resources</h1>
+    </p>
+
+    <h2>Resources</h2>
     <ul>
+        <li><a href="https://apidocs.cheapshark.com/" target="_blank">Cheapshark API</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Fetch API Documentation</a></li>
         <li><a href="https://codepen.io/tmac/pen/QgVRKb">Inspired Progress Bar</a></li>
     </ul>
 </body>

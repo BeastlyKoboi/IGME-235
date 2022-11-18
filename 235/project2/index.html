@@ -19,10 +19,10 @@
 
     <div id="base-filters">
         <div class="filters">
-            <input id="searchterm" type="text" size="20" maxlength="20" placeholder="Search for a Game!" value="" autofocus />
+            <input id="searchterm" type="text" size="20" maxlength="20" placeholder="Search for a Game!" value="" autofocus >
         </div>
 
-        <div id="" class="filters">
+        <div class="filters">
             <label for="pagelim">#</label>
             <input type="number" id="pagelim" name="pagelim" min="1" max="60" value="48">
             <label for="pagelim"> Games</label>
@@ -41,6 +41,13 @@
                 <option value="recent">Recent</option>
             </select>
         </div>
+
+        <div>
+            <select name="sorters" id="sort-direction">
+                <option value="0">Descending</option>
+                <option value="1">Ascending</option>
+            </select>
+        </div>
     </div>
 
     
@@ -49,67 +56,67 @@
         <h2>Stores</h2>
 
         <div id="store-select-logos">
-            <input type="checkbox" id="steam" name="store" value="1" checked />
+            <input type="checkbox" id="steam" name="store" value="1" checked >
             <label for="steam"><img src="media/0.png" alt="Steam Logo"></label>
 
-            <input type="checkbox" id="gamersgate" name="store" value="2" />
+            <input type="checkbox" id="gamersgate" name="store" value="2" >
             <label for="gamersgate"><img src="media/1.png" alt="gamersgate logo"></label>
 
-            <input type="checkbox" id="greenmangaming" name="store" value="3" />
+            <input type="checkbox" id="greenmangaming" name="store" value="3" >
             <label for="greenmangaming"><img src="media/2.png" alt="greenmangaming logo"></label>
 
-            <input type="checkbox" id="direct2drive" name="store" value="6" />
+            <input type="checkbox" id="direct2drive" name="store" value="6" >
             <label for="direct2drive"><img src="media/5.png" alt="direct2drive logo"></label>
 
-            <input type="checkbox" id="gog" name="store" value="7" />
+            <input type="checkbox" id="gog" name="store" value="7" >
             <label for="gog"><img src="media/6.png" alt="gog logo"></label>
 
-            <input type="checkbox" id="origin" name="store" value="8" />
+            <input type="checkbox" id="origin" name="store" value="8" >
             <label for="origin"><img src="media/7.png" alt="origin logo"></label>
 
-            <input type="checkbox" id="humblestore" name="store" value="11" />
+            <input type="checkbox" id="humblestore" name="store" value="11" >
             <label for="humblestore"><img src="media/10.png" alt="humblestore logo"></label>
 
-            <input type="checkbox" id="uplay" name="store" value="13" />
+            <input type="checkbox" id="uplay" name="store" value="13" >
             <label for="uplay"><img src="media/12.png" alt="uplay logo"></label>
 
-            <input type="checkbox" id="fanatical" name="store" value="15" />
+            <input type="checkbox" id="fanatical" name="store" value="15" >
             <label for="fanatical"><img src="media/14.png" alt="fanatical logo"></label>
 
-            <input type="checkbox" id="wingamestore" name="store" value="21" />
+            <input type="checkbox" id="wingamestore" name="store" value="21" >
             <label for="wingamestore"><img src="media/20.png" alt="wingamestore logo"></label>
 
-            <input type="checkbox" id="gamebillet" name="store" value="23" />
+            <input type="checkbox" id="gamebillet" name="store" value="23" >
             <label for="gamebillet"><img src="media/22.png" alt="gamebillet logo"></label>
 
-            <input type="checkbox" id="voidu" name="store" value="24" />
+            <input type="checkbox" id="voidu" name="store" value="24" >
             <label for="voidu"><img src="media/23.png" alt="voidu logo"></label>
 
-            <input type="checkbox" id="epicgamesstore" name="store" value="25" checked />
+            <input type="checkbox" id="epicgamesstore" name="store" value="25" checked >
             <label for="epicgamesstore"><img src="media/24.webp" alt="epicgamesstore logo"></label>
 
-            <input type="checkbox" id="gamesplanet" name="store" value="27" />
+            <input type="checkbox" id="gamesplanet" name="store" value="27" >
             <label for="gamesplanet"><img src="media/26.png" alt="gamesplanet logo"></label>
 
-            <input type="checkbox" id="gamesload" name="store" value="28" />
+            <input type="checkbox" id="gamesload" name="store" value="28" >
             <label for="gamesload"><img src="media/27.png" alt="gamesload logo"></label>
 
-            <input type="checkbox" id="2game" name="store" value="29" />
+            <input type="checkbox" id="2game" name="store" value="29" >
             <label for="2game"><img src="media/28.png" alt="2game logo"></label>
 
-            <input type="checkbox" id="indiegala" name="store" value="30" />
+            <input type="checkbox" id="indiegala" name="store" value="30" >
             <label for="indiegala"><img src="media/29.png" alt="indiegala logo"></label>
 
-            <input type="checkbox" id="blizzardshop" name="store" value="31" />
+            <input type="checkbox" id="blizzardshop" name="store" value="31" >
             <label for="blizzardshop"><img src="media/30.png" alt="blizzardshop logo"></label>
 
-            <input type="checkbox" id="allyouplay" name="store" value="32" />
+            <input type="checkbox" id="allyouplay" name="store" value="32" >
             <label for="allyouplay"><img src="media/31.png" alt="allyouplay logo"></label>
 
-            <input type="checkbox" id="dlgamer" name="store" value="33" />
+            <input type="checkbox" id="dlgamer" name="store" value="33" >
             <label for="dlgamer"><img src="media/32.png" alt="dlgamer logo"></label>
 
-            <input type="checkbox" id="noctre" name="store" value="34" />
+            <input type="checkbox" id="noctre" name="store" value="34" >
             <label for="noctre"><img src="media/33.png" alt="noctre logo"></label>
         </div>
         <!-- 
@@ -185,17 +192,17 @@
     </div>
 
     <div id="add-filters">
-        <div id="" class="filters">
+        <div class="filters">
             <label for="maxprice">Max Price: $</label>
             <input type="number" id="maxprice" name="maxprice" min="0" max="100">
         </div>
 
-        <div id="" class="filters">
+        <div class="filters">
             <label for="minrating">Min Rating:</label>
             <input type="number" id="minrating" name="minrating" min="1" max="100">
         </div>
 
-        <div id="" class="filters">
+        <div class="filters">
             <label for="pagenum">Page:</label>
             <input type="number" id="pagenum" name="pagenum" min="1" max="20" value="1">
         </div>
@@ -204,7 +211,6 @@
             <button type="button" id="search" class="">Find a Deal!</button>
         </div>
     </div>
-
 
     <div id="results">
 

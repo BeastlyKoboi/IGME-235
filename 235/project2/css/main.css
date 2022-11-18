@@ -48,7 +48,7 @@ p {
     border-radius: 10px;
 }
 
-#base-filters #sort-select {
+#base-filters #sort-select, #base-filters #sort-direction {
     background-color: rgb(204, 255, 204);
     border-radius: 10px;
     padding: 6px 10px;
@@ -132,7 +132,7 @@ p {
 }
 
 #results .game {
-    background-color: #8BBCCC;
+    background-color: #a1d5e7;
     color: black;
     border-radius: 10px;
     display: grid;
@@ -151,9 +151,21 @@ p {
 .description {
     padding: 5px 5px;
 }
-
+.goodrevs {
+    color: green;
+}
+.mehrevs {
+    color: rgb(171, 123, 0);
+}
+.badrevs {
+    color: red;
+}
+.price {
+    font-size: large;
+}
 .discount {
-    color: darkgreen;
+    color: green;
+    font-size: larger;
     /* text-decoration:line-through; */
 }
 
@@ -186,4 +198,24 @@ button:hover {
 button:active {
     background-color: #298e46;
     box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+/* unvisited link */
+a:link {
+    color: darkolivegreen;
+}
+
+/* visited link */
+a:visited {
+    color: darkslategrey;
+}
+
+/* mouse over link */
+a:hover {
+    color: red;
+}
+
+/* selected link */
+a:active {
+    color: red;
 }
