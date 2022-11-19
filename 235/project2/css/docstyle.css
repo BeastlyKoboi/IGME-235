@@ -1,0 +1,35 @@
+body {
+    width: 80%;
+    margin: 0 auto;
+    background-color: black;
+    color: aliceblue;
+}
+
+h1 {
+    text-align: center;
+    margin: 1rem auto;
+}
+
+p {
+    line-height: 1.5;
+}
+
+/* unvisited link */
+a:link {
+    color: aliceblue;
+}
+
+/* visited link */
+a:visited {
+    color: whitesmoke;
+}
+
+/* mouse over link */
+a:hover {
+    color: red;
+}
+
+/* selected link */
+a:active {
+    color: red;
+}
