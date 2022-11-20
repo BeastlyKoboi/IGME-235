@@ -1,5 +1,5 @@
 body {
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
     background-color: black;
     color: aliceblue;
@@ -12,6 +12,7 @@ h1 {
 
 p {
     line-height: 1.5;
+    font-size: large;
 }
 
 /* unvisited link */

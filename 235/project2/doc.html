@@ -40,9 +40,11 @@
         managing to parse that info. It was only later that I realized that many of the stores I listed 
         were not active anymore, so they would not be valid options, yet would not throw an error. So I 
         had to take a second look at all the stores and only have the active ones in the HTML and js.  
-        I then relized that the actual store names were not listed with the games returned, just the 
+        I then realized that the actual store names were not listed with the games returned, just the 
         store IDs, which meant I either had to make another request to the API for it, or just have it
-        mapped out beforehand. I chose the latter because it seemed simpler. It was a similar situation
+        mapped out beforehand. I chose the latter because it seemed simpler. 
+        <br><br>
+        It was a similar situation
         with the logos for each store's checkbox. The images themselves were on the API, but I could
         not access them due to a CORS error that I could not get around. So, I found it simpler to just
         download the images from the API and hard code it into the HTML. The CSS and many of the later 
@@ -50,7 +52,9 @@
         required some javascript and it in turn needed a new form of input. During this long period of 
         adjustments, I decided that I was using the exact same query selectors a lot in my javascript 
         that it might be better to just initialize them when the window loads and use them when needed. 
-        That may not be good practice, but it made sense at the time. I also realized later than I 
+        That may not be good practice, but it made sense at the time. 
+        <br><br>
+        I also realized later than I 
         would have liked that I still did not do anything related to saving and getting from the 
         localStorage. That definitely provided its own series of problems. One main one was accidentally 
         saving null values to localStorage, then receiving them back causing errors. I ended up doing 
@@ -60,7 +64,9 @@
         images. This forced my game results to be smaller than I wanted them to appear and gave many 
         a great deal of white space. I decided after speaking with the professor to focus on making the 
         discriptions level with each other was more important, so that it was more easily legible for 
-        the viewer. In the end I had to make a couple concessions in order to keep the spirit of my 
+        the viewer. 
+        <br><br>
+        In the end I had to make a couple concessions in order to keep the spirit of my 
         first design, while accounting for the aspects that I did not know how to make fit neatly. This 
         project was definitely an exercise in flexibility and foresight. I am not completely happy with 
         the look and feel of my website, but I do believe that the bones are strong. A good design sense 
