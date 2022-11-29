@@ -25,73 +25,80 @@ class Card extends PIXI.Sprite {
         if (this.timePaused < Card.timeBuffer) {
             // 1st Cardback Texture width scales down until 0
             if (!this.textureSwitched) {
-                newXScale = (this.scale.x / Card.defaultScale) - Card.speed * dt;
-
-                if (newXScale <= 0) {
-                    this.textureSwitched = true;
-                    this.texture = this.frontTexture.texture;
-                }
-
-                this.scale.set(newXScale * Card.defaultScale, Card.defaultScale);
-                return true;
+                return (this.#scaleXDown(this.frontTexture.texture, dt));
             }
             // 2nd Card Texture width scales up until 1
             else {
-                newXScale = (this.scale.x / Card.defaultScale) + Card.speed * dt;
+                let oneReached = this.#scaleXUp(dt);
 
-                if (newXScale > 1) {
-                    newXScale = 1;
-                }
-                if (newXScale == 1) {
+                if (oneReached) {
                     this.timePaused += dt;
                 }
 
-                this.scale.set(newXScale * Card.defaultScale, Card.defaultScale);
                 return true;
             }
         }
-        // Time buffer has been reached and card was matched, so remove card and
+        // Time buffer has been reached and card was matched, so remove card 
         else if (this.matched) {
-            newXScale = (this.scale.x / Card.defaultScale) - Card.speed * dt;
-            newYScale = (this.scale.y / Card.defaultScale) - Card.speed * dt;
-
-            if (newXScale <= 0) {
-                this.scale.set(0, 0);
-                return false;
-            }
-
-            this.scale.set(newXScale * Card.defaultScale, newYScale * Card.defaultScale);
-            return true;
+            // When scaled to zero, returns false and signals end animation
+            return (this.#scaleAllDown(dt));
         }
         // Time buffer has been reached and card was not matched, so flip Card to Cardback
         else {
             // 3rd Card Texture width scales back down until 0
             if (this.textureSwitched) {
-                newXScale = (this.scale.x / Card.defaultScale) - Card.speed * dt;
-
-                if (newXScale <= 0) {
-                    this.textureSwitched = false;
-                    this.texture = app.loader.resources["media/Cardback.png"].texture;
-                    this.scale.set(newXScale * Card.defaultScale, Card.defaultScale);
-                }
-
-                this.scale.set(newXScale * Card.defaultScale, Card.defaultScale);
-                return true;
+                return (this.#scaleXDown(app.loader.resources["media/Cardback.png"].texture, dt));
             }
             // 4th Cardback Texture width scales back up until 1
             else {
-                newXScale = (this.scale.x / Card.defaultScale) + Card.speed * dt;
+                let oneReached = this.#scaleXUp();
 
-                if (newXScale > 1) {
-                    newXScale = 1;
-                    this.scale.set(Card.defaultScale, Card.defaultScale);
+                if (oneReached) {
                     this.timePaused = 0;
-                    return false;
+                    return false; // animation has ended
                 }
 
-                this.scale.set(newXScale * Card.defaultScale, Card.defaultScale);
-                return true;
+                return true; // animation has not ended
             }
         }
     }
+
+    #scaleXDown(newTexture = app.loader.resources["media/Cardback.png"].texture, dt = 1 / 60) {
+        let newXScale = (this.scale.x / Card.defaultScale) - Card.speed * dt;
+
+        if (newXScale <= 0) {
+            this.textureSwitched = !this.textureSwitched;
+            this.texture = newTexture;
+        }
+
+        this.scale.set(newXScale * Card.defaultScale, Card.defaultScale);
+        return true;
+    }
+
+    #scaleXUp(dt = 1 / 60) {
+        let oneHasBeenReached = false;
+        let newXScale = (this.scale.x / Card.defaultScale) + Card.speed * dt;
+
+        if (newXScale > 1) {
+            newXScale = 1;
+            oneHasBeenReached = true;
+        }
+
+        this.scale.set(newXScale * Card.defaultScale, Card.defaultScale);
+        return oneHasBeenReached;
+    }
+
+    #scaleAllDown(dt = 1 / 60) {
+        let newXScale = (this.scale.x / Card.defaultScale) - Card.speed * dt;
+        let newYScale = (this.scale.y / Card.defaultScale) - Card.speed * dt;
+
+        if (newXScale <= 0) {
+            this.scale.set(0, 0);
+            return false;
+        }
+
+        this.scale.set(newXScale * Card.defaultScale, newYScale * Card.defaultScale);
+        return true;
+    }
+
 }

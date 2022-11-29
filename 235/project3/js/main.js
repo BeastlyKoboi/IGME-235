@@ -43,6 +43,7 @@ let gameOverScoreLabel;
 
 let cards = [];
 let cardsGrid = [];
+let cardsLeft = 0;
 let score = 0;
 let life = 100;
 let levelNum = 1;
@@ -55,6 +56,10 @@ let cardDefaultFront = app.loader.resources["media/Card.png"];
 
 function setup() {
     stage = app.stage;
+
+    backgroundSprite = PIXI.Sprite.from(app.loader.resources["media/Background.png"].texture);
+    stage.addChild(backgroundSprite);
+
     // #1 - Create the `start` scene
     startScene = new PIXI.Container();
     stage.addChild(startScene);
@@ -68,6 +73,10 @@ function setup() {
     gameOverScene = new PIXI.Container();
     gameOverScene.visible = false;
     stage.addChild(gameOverScene);
+
+
+    
+    
 
     // #4 - Create labels for all 3 scenes 
     createLabelsAndButtons();
@@ -116,6 +125,33 @@ function createLabelsAndButtons() {
     startButton.on("pointerover", e => e.target.alpha = 0.7); // concise arrow function with no brackets
     startButton.on("pointerout", e => e.currentTarget.alpha = 1.0); // ditto
     startScene.addChild(startButton);
+
+    // 3 - set up `gameOverScene`
+	// 3A - make game over text
+	let gameOverText = new PIXI.Text("Game Over!");
+	let textStyle = new PIXI.TextStyle({
+		fill: 0xFFFFFF,
+		fontSize: 64,
+		fontFamily: "PirataOne",
+		stroke: 0xFF0000,
+		strokeThickness: 6
+	});
+	gameOverText.style = textStyle;
+	gameOverText.x = sceneWidth / 2 - gameOverText.width / 2;
+	gameOverText.y = sceneHeight / 2 - gameOverText.height / 2;
+	gameOverScene.addChild(gameOverText);
+
+    // Make play again button
+    let playAgainButton = new PIXI.Text("Play Again?");
+	playAgainButton.style = buttonStyle;
+    playAgainButton.x = sceneWidth / 2 - playAgainButton.width / 2;
+	playAgainButton.y = sceneHeight - 100;
+	playAgainButton.interactive = true;
+	playAgainButton.buttonMode = true;
+	playAgainButton.on("pointerup", startGame); // startGame is a function reference
+	playAgainButton.on('pointerover', e => e.target.alpha = 0.7); // concise arrow function with no brackets
+	playAgainButton.on('pointerout', e => e.currentTarget.alpha = 1.0); // ditto
+	gameOverScene.addChild(playAgainButton);
 }
 
 
@@ -156,34 +192,32 @@ function gameLoop() {
                 gameScene.removeChild(cardsSelected[1]);
                 cardsGrid[cardsSelected[0].gridRow, cardsSelected[0].gridCol] = null;
                 cardsGrid[cardsSelected[1].gridRow, cardsSelected[1].gridCol] = null;
+                cardsLeft -= 2;
             }
             cardsSelected = [];
         }
-        
     }
 
     // #7 - Is game over?
-    if (life <= 0) {
-        // end();
+    if (life <= 0 || cardsLeft == 0) {
+        end();
         return; // return here so we skip #8 below
     }
 
 }
 
 function createCardPair(cardFront = cardDefaultFront) {
-    let card1 = new Card(cardFront);
-    card1.interactive = true;
-    card1.buttonMode = true;
-    card1.on("click", flipCard);
-    cards.push(card1);
-    gameScene.addChild(card1);
-
-    let card2 = new Card(cardFront);
-    card2.interactive = true;
-    card2.buttonMode = true;
-    card2.on("click", flipCard);
-    cards.push(card2);
-    gameScene.addChild(card2);
+    let sameCards = 2;
+    
+    for (let i = 0; i < sameCards; i++) {
+        let card = new Card(cardFront);
+        card.interactive = true;
+        card.buttonMode = true;
+        card.on("click", flipCard);
+        cards.push(card);
+        gameScene.addChild(card);
+        cardsLeft++;
+    }
 }
 
 function flipCard(e) {
@@ -194,9 +228,9 @@ function flipCard(e) {
             cardsFlipping = true;
             if (cardsSelected[0].frontTexture == cardsSelected[1].frontTexture) {
                 cardsSelected[0].matched = true;
-                cardsSelected[1].matched = true; 
+                cardsSelected[1].matched = true;
             }
-            
+
         }
         if (cardsSelected.length == 0) {
             cardsSelected.push(e.target);
@@ -205,20 +239,19 @@ function flipCard(e) {
 }
 
 function loadLevel() {
-
-    backgroundSprite = PIXI.Sprite.from(app.loader.resources["media/Background.png"].texture);
-    gameScene.addChild(backgroundSprite);
-
-    for (let i = 0; i < 8; i++) {
+    let gridColumns = 8;
+    let gridRows = 2;
+    let cardsPairs = gridColumns * gridRows / 2;
+    
+    for (let i = 0; i < cardsPairs; i++) {
         let cardtexture = app.loader.resources["media/Card" + (i + 1) + ".png"];
         createCardPair(cardtexture);
     }
 
-    let gridColumns = 8;
-    let gridRows = 2;
+    cardsLeft = gridColumns * gridRows;
     let cardX = 80;
     let cardY = 112;
-    let offsetX = cardX / 2  * Card.defaultScale;
+    let offsetX = cardX / 2 * Card.defaultScale;
     let offsetY = cardY / 2 * Card.defaultScale;
     let gap = 20;
 
@@ -235,20 +268,39 @@ function loadLevel() {
                 cards[randCardIndex].x = offsetX + col * (cardX + gap);
                 cards[randCardIndex].y = offsetY + row * (cardY + gap);
 
-                cards[randCardIndex].gridCol = col; 
+                cards[randCardIndex].gridCol = col;
                 cards[randCardIndex].gridRow = row;
 
                 cards.splice(randCardIndex, 1);
             }
-            
+
         }
 
         cardsGrid.push(cardsInRow);
     }
 
-
-
     paused = false;
 }
 
+function end() {
+	paused = true;
+	// clear out level
+	// circles.forEach(c => gameScene.removeChild(c));
+	// circles = [];
+
+	// bullets.forEach(b => gameScene.removeChild(b));
+	// bullets = [];
+
+	// explosions.forEach(e => gameScene.removeChild(e));
+	// explosions = [];
+
+    cards = [];
+    cardsGrid = [];
+
+	debugger;
+
+	gameOverScene.visible = true;
+	gameScene.visible = false;
+
+}
 
