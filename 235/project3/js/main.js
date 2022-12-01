@@ -75,8 +75,8 @@ function setup() {
     stage.addChild(gameOverScene);
 
 
-    
-    
+
+
 
     // #4 - Create labels for all 3 scenes 
     createLabelsAndButtons();
@@ -127,31 +127,31 @@ function createLabelsAndButtons() {
     startScene.addChild(startButton);
 
     // 3 - set up `gameOverScene`
-	// 3A - make game over text
-	let gameOverText = new PIXI.Text("Game Over!");
-	let textStyle = new PIXI.TextStyle({
-		fill: 0xFFFFFF,
-		fontSize: 64,
-		fontFamily: "PirataOne",
-		stroke: 0xFF0000,
-		strokeThickness: 6
-	});
-	gameOverText.style = textStyle;
-	gameOverText.x = sceneWidth / 2 - gameOverText.width / 2;
-	gameOverText.y = sceneHeight / 2 - gameOverText.height / 2;
-	gameOverScene.addChild(gameOverText);
+    // 3A - make game over text
+    let gameOverText = new PIXI.Text("Game Over!");
+    let textStyle = new PIXI.TextStyle({
+        fill: 0xFFFFFF,
+        fontSize: 64,
+        fontFamily: "PirataOne",
+        stroke: 0xFF0000,
+        strokeThickness: 6
+    });
+    gameOverText.style = textStyle;
+    gameOverText.x = sceneWidth / 2 - gameOverText.width / 2;
+    gameOverText.y = sceneHeight / 2 - gameOverText.height / 2;
+    gameOverScene.addChild(gameOverText);
 
     // Make play again button
     let playAgainButton = new PIXI.Text("Play Again?");
-	playAgainButton.style = buttonStyle;
+    playAgainButton.style = buttonStyle;
     playAgainButton.x = sceneWidth / 2 - playAgainButton.width / 2;
-	playAgainButton.y = sceneHeight - 100;
-	playAgainButton.interactive = true;
-	playAgainButton.buttonMode = true;
-	playAgainButton.on("pointerup", startGame); // startGame is a function reference
-	playAgainButton.on('pointerover', e => e.target.alpha = 0.7); // concise arrow function with no brackets
-	playAgainButton.on('pointerout', e => e.currentTarget.alpha = 1.0); // ditto
-	gameOverScene.addChild(playAgainButton);
+    playAgainButton.y = sceneHeight - 100;
+    playAgainButton.interactive = true;
+    playAgainButton.buttonMode = true;
+    playAgainButton.on("pointerup", startGame); // startGame is a function reference
+    playAgainButton.on('pointerover', e => e.target.alpha = 0.7); // concise arrow function with no brackets
+    playAgainButton.on('pointerout', e => e.currentTarget.alpha = 1.0); // ditto
+    gameOverScene.addChild(playAgainButton);
 }
 
 
@@ -182,19 +182,28 @@ function gameLoop() {
     // ship.position = mousePosition;
 
     if (cardsFlipping) {
-        cardsSelected.forEach(element => {
-            cardsFlipping = element.flip(dt);
-        });
+        if (cardsSelected.length == 2) {
+            let card1Done = cardsSelected[0].flip(dt);
+            let card2Done = cardsSelected[1].flip(dt);
 
-        if (!cardsFlipping) {
-            if (cardsSelected[0].matched) {
-                gameScene.removeChild(cardsSelected[0]);
-                gameScene.removeChild(cardsSelected[1]);
-                cardsGrid[cardsSelected[0].gridRow, cardsSelected[0].gridCol] = null;
-                cardsGrid[cardsSelected[1].gridRow, cardsSelected[1].gridCol] = null;
-                cardsLeft -= 2;
+            cardsSelected[0].pairTimePaused = cardsSelected[1].timePaused;
+            cardsSelected[1].pairTimePaused = cardsSelected[0].timePaused;
+
+            if (!card1Done && !card2Done) {
+                if (cardsSelected[0].matched) {
+                    gameScene.removeChild(cardsSelected[0]);
+                    gameScene.removeChild(cardsSelected[1]);
+                    cardsGrid[cardsSelected[0].gridRow, cardsSelected[0].gridCol] = null;
+                    cardsGrid[cardsSelected[1].gridRow, cardsSelected[1].gridCol] = null;
+                    cardsLeft -= 2;
+                }
+
+                cardsFlipping = false;
+                cardsSelected = [];
             }
-            cardsSelected = [];
+        }
+        else {
+            cardsSelected[0].flip(dt);
         }
     }
 
@@ -208,41 +217,47 @@ function gameLoop() {
 
 function createCardPair(cardFront = cardDefaultFront) {
     let sameCards = 2;
-    
+    let cardPair = [];
+
     for (let i = 0; i < sameCards; i++) {
         let card = new Card(cardFront);
         card.interactive = true;
         card.buttonMode = true;
         card.on("click", flipCard);
         cards.push(card);
+        cardPair.push(card);
         gameScene.addChild(card);
         cardsLeft++;
     }
+
 }
 
 function flipCard(e) {
-    if (!cardsFlipping) {
 
-        if (cardsSelected.length == 1 && e.target != cardsSelected[0]) {
-            cardsSelected.push(e.target);
-            cardsFlipping = true;
-            if (cardsSelected[0].frontTexture == cardsSelected[1].frontTexture) {
-                cardsSelected[0].matched = true;
-                cardsSelected[1].matched = true;
-            }
-
-        }
-        if (cardsSelected.length == 0) {
-            cardsSelected.push(e.target);
-        }
+    if (cardsSelected.length == 2) {
+        return;
     }
+    if (cardsSelected.length == 1 && e.target != cardsSelected[0]) {
+        cardsSelected.push(e.target);
+        if (cardsSelected[0].frontTexture == cardsSelected[1].frontTexture) {
+            cardsSelected[0].matched = true;
+            cardsSelected[1].matched = true;
+        }
+        return;
+    }
+    if (cardsSelected.length == 0) {
+        cardsSelected.push(e.target);
+        cardsFlipping = true;
+        return;
+    }
+
 }
 
 function loadLevel() {
     let gridColumns = 8;
     let gridRows = 2;
     let cardsPairs = gridColumns * gridRows / 2;
-    
+
     for (let i = 0; i < cardsPairs; i++) {
         let cardtexture = app.loader.resources["media/Card" + (i + 1) + ".png"];
         createCardPair(cardtexture);
@@ -283,24 +298,24 @@ function loadLevel() {
 }
 
 function end() {
-	paused = true;
-	// clear out level
-	// circles.forEach(c => gameScene.removeChild(c));
-	// circles = [];
+    paused = true;
+    // clear out level
+    // circles.forEach(c => gameScene.removeChild(c));
+    // circles = [];
 
-	// bullets.forEach(b => gameScene.removeChild(b));
-	// bullets = [];
+    // bullets.forEach(b => gameScene.removeChild(b));
+    // bullets = [];
 
-	// explosions.forEach(e => gameScene.removeChild(e));
-	// explosions = [];
+    // explosions.forEach(e => gameScene.removeChild(e));
+    // explosions = [];
 
     cards = [];
     cardsGrid = [];
 
-	debugger;
+    debugger;
 
-	gameOverScene.visible = true;
-	gameScene.visible = false;
+    gameOverScene.visible = true;
+    gameScene.visible = false;
 
 }
 
