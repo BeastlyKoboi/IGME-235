@@ -1,7 +1,7 @@
 class Card extends PIXI.Sprite {
     static speed = 10;
     static defaultScale = 1;
-    static timeBuffer = 1;
+    static timeBuffer = .75;
 
     constructor(frontTexture) {
         super(app.loader.resources["media/Cardback.png"].texture);
@@ -16,6 +16,7 @@ class Card extends PIXI.Sprite {
         this.gridCol = 0;
         this.gridRow = 0;
         this.pairTimePaused = 0;
+        this.effect = function () { };
     }
 
     flip(dt = 1 / 60) {
@@ -40,8 +41,8 @@ class Card extends PIXI.Sprite {
             }
         }
         // Time buffer has been reached and card was matched, so remove card 
-        else if (this.pairTimePaused > Card.timeBuffer) {
-            
+        else if (this.pairTimePaused >= Card.timeBuffer) {
+
             if (this.matched) {
                 // When scaled to zero, returns false and signals end animation
                 return (this.#scaleAllDown(dt));

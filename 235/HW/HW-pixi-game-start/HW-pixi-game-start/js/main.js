@@ -209,7 +209,7 @@ function startGame() {
 
 	levelNum = 1;
 	score = 0;
-	life = 100;
+	hearts = 100;
 	increaseScoreBy(0);
 	decreaseLifeBy(0);
 	ship.x = 300;
@@ -224,9 +224,9 @@ function increaseScoreBy(value) {
 }
 
 function decreaseLifeBy(value) {
-	life -= value;
-	life = parseInt(life);
-	lifeLabel.text = `Life      ${life}%`
+	hearts -= value;
+	hearts = parseInt(hearts);
+	lifeLabel.text = `Life      ${hearts}%`
 }
 
 function gameLoop() {
@@ -310,7 +310,7 @@ function gameLoop() {
 	explosions = explosions.filter(e => e.playing);
 
 	// #7 - Is game over?
-	if (life <= 0) {
+	if (hearts <= 0) {
 		end();
 		return; // return here so we skip #8 below
 	}
