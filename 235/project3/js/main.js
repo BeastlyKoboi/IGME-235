@@ -52,10 +52,12 @@ let cardsLeft = 0;
 let cardsSelected = [];
 let cardsFlipping = false;
 let cardDefaultFront = app.loader.resources["media/Card.png"];
+let cardX = 80;
+let cardY = 112;
+let gap = 20;
 
 const maxHearts = 3;
 const maxDodge = 100;
-let score = 0;
 let currHearts = maxHearts;
 let currDodge = maxDodge;
 let heartTexture = app.loader.resources["media/heart.png"];
@@ -145,13 +147,16 @@ function createLabelsAndButtons() {
     // 1C - make start game button
     makeButton(startScene, startGame, "Play", buttonStyle, sceneWidth / 2, sceneHeight - 100);
 
+    let sideX = (sceneWidth - gridColumns * (cardX + gap) + gap) / 2;
+
     // Make UI for gameplay
     // Make UI Hearts for gameplay
     for (let i = 0; i < maxHearts; i++) {
         let heart = new PIXI.Sprite.from(app.loader.resources["media/heart.png"].texture);
         heart.scale.set(2);
-        heart.x = 20 + heart.width * i;
-        heart.y = 20;
+        heart.anchor.set(.5, .5);
+        heart.x = (i + 1) * sideX / 4;
+        heart.y = heart.height / 2 + 20;
         gameScene.addChild(heart);
         heartSprites.push(heart);
     }
@@ -159,24 +164,26 @@ function createLabelsAndButtons() {
     for (let i = 0; i < totalEnemyHearts; i++) {
         let heart = new PIXI.Sprite.from(app.loader.resources["media/heart.png"].texture);
         heart.scale.set(2);
-        heart.x = sceneWidth - 20 - heart.width * (i + 1);
-        if (i > 2)
-            heart.x += heart.width * 3;
+        heart.anchor.set(.5, .5);
 
-        heart.y = 20;
+        heart.x = sceneWidth - sideX + ((i % 3 + 1) * sideX / 4);
+
+        heart.y = heart.height / 2 + 20;
         if (i > 2)
-            heart.y += heart.height;
+            heart.y += heart.height + 20;
 
         gameScene.addChild(heart);
         enemyHeartSprites.push(heart);
     }
 
     // Make label for dodge 
-    currDodgeLabel = makeLabel(gameScene, currDodge + '%', labelStyleThree, sceneWidth / 8, sceneHeight / 2);
+    makeLabel(gameScene, "Dodge:", labelStyleThree, sideX / 2, sceneHeight / 2 - 60);
+    currDodgeLabel = makeLabel(gameScene, currDodge + '%', labelStyleThree, sideX / 2, sceneHeight / 2);
 
     // Make label for enemy countdown
-    enemyCountdownLabel = makeLabel(gameScene, enemyCountdown + ' Secs', labelStyleThree, 8 * sceneWidth / 10, sceneHeight / 2);
-
+    let rightSideCenter = sideX + gridColumns * (cardX + gap) - gap + sideX / 2;
+    makeLabel(gameScene, "Attack in...", labelStyleThree, rightSideCenter, sceneHeight / 2 - 60);
+    enemyCountdownLabel = makeLabel(gameScene, enemyCountdown + ' Secs', labelStyleThree, rightSideCenter, sceneHeight / 2);
 
     // 3 - set up `gameOverScene`
     // 3A - make game over text
@@ -193,10 +200,6 @@ function startGame() {
     gameOverScene.visible = false;
     gameScene.visible = true;
     // .. more to come
-
-    levelNum = 1;
-    score = 0;
-
 
     loadLevel();
 
@@ -240,7 +243,6 @@ function gameLoop() {
             }
         }
         else {
-            // possibly causes error where card stays on screen 
             cardsSelected[0].flip(dt);
         }
     }
@@ -266,10 +268,14 @@ function gameLoop() {
 
     // #7 - Is game over?
     if (currHearts <= 0) {
-
         end(false);
     }
     else if (cardsLeft == 0) {
+        RefreshCardGrid();
+    }
+    else if (levelEnemyHearts == 0) {
+        if (levelNum < totalEnemyHearts)
+            levelNum++;
         end(true);
     }
 
@@ -336,51 +342,17 @@ function flipCard(e) {
 }
 
 function loadLevel() {
-    let cardsPairs = gridColumns * gridRows / 2;
-
-    for (let i = 0; i < cardsPairs; i++) {
-        let cardtexture = app.loader.resources["media/Card" + (i + 1) + ".png"];
-        createCardPair(cardtexture, i + 1);
-    }
-
-    cardsLeft = gridColumns * gridRows;
-    let cardX = 80;
-    let cardY = 112;
-    let gap = 20;
-    let offsetX = cardX / 2 * Card.defaultScale + (sceneWidth - gridColumns * (cardX + gap)) / 2;
-    let offsetY = cardY / 2 * Card.defaultScale + gap;
-
-    for (let row = 0; row < gridRows; row++) {
-        let cardsInRow = [];
-
-        for (let col = 0; col < gridColumns; col++) {
-            let randCardIndex = Math.floor(cards.length * Math.random());
-
-            // if exists
-            if (cards[randCardIndex]) {
-                cardsInRow.push(cards[randCardIndex]);
-
-                cards[randCardIndex].x = offsetX + col * (cardX + gap);
-                cards[randCardIndex].y = offsetY + row * (cardY + gap);
-
-                cards[randCardIndex].gridCol = col;
-                cards[randCardIndex].gridRow = row;
-
-                cards.splice(randCardIndex, 1);
-            }
-
-        }
-
-        cardsGrid.push(cardsInRow);
-    }
+    RefreshCardGrid()
 
     // Set active hearts for next level
     enemyCountdown = enemyCooldown;
     enemyCountdownLabel.text = enemyCountdown;
+
     levelEnemyHearts = 2 + levelNum;
 
     currDodge = maxDodge;
     currDodgeLabel.text = Math.ceil(currDodge) + '%';
+
 
     currHearts = maxHearts;
 
@@ -411,20 +383,7 @@ function end(hasWon = false) {
     // explosions.forEach(e => gameScene.removeChild(e));
     // explosions = [];
 
-    cards = [];
-
-    debugger;   
-    // Clear grid 
-    for (let row = 0; row < gridRows; row++) {
-        for (let col = 0; col < gridColumns; col++) {
-            if (cardsGrid[row] && cardsGrid[row][col]) {
-                gameScene.removeChild(cardsGrid[row][col]);
-            }
-        }
-
-    }
-
-    cardsGrid = [];
+    RemoveOldCardGrid()
 
     gameOverScene.visible = true;
     gameScene.visible = false;
@@ -462,13 +421,65 @@ function addDodge() {
     else {
         currDodge = 100;
     }
-    currDodgeLabel.text = currDodge;
+    currDodgeLabel.text = Math.ceil(currDodge) + "%";
 }
 function addCountdownTime() {
     enemyCountdown += 5;
     enemyCountdownLabel.text = enemyCountdown;
 }
 
+function RefreshCardGrid() {
+    RemoveOldCardGrid()
+
+    let cardsPairs = gridColumns * gridRows / 2;
+
+    for (let i = 0; i < cardsPairs; i++) {
+        let cardtexture = app.loader.resources["media/Card" + (i + 1) + ".png"];
+        createCardPair(cardtexture, i + 1);
+    }
+
+    cardsLeft = gridColumns * gridRows;
+
+    let offsetX = cardX / 2 * Card.defaultScale + (sceneWidth - gridColumns * (cardX + gap) + gap) / 2;
+    let offsetY = cardY / 2 * Card.defaultScale + gap;
+
+    for (let row = 0; row < gridRows; row++) {
+        let cardsInRow = [];
+
+        for (let col = 0; col < gridColumns; col++) {
+            let randCardIndex = Math.floor(cards.length * Math.random());
+
+            // if exists
+            if (cards[randCardIndex]) {
+                cardsInRow.push(cards[randCardIndex]);
+
+                cards[randCardIndex].x = offsetX + col * (cardX + gap);
+                cards[randCardIndex].y = offsetY + row * (cardY + gap);
+
+                cards[randCardIndex].gridCol = col;
+                cards[randCardIndex].gridRow = row;
+
+                cards.splice(randCardIndex, 1);
+            }
+        }
+        cardsGrid.push(cardsInRow);
+    }
+}
+
+function RemoveOldCardGrid() {
+    cards = [];
+
+    for (let row = 0; row < gridRows; row++) {
+        for (let col = 0; col < gridColumns; col++) {
+            if (cardsGrid[row] && cardsGrid[row][col]) {
+                gameScene.removeChild(cardsGrid[row][col]);
+            }
+        }
+
+    }
+
+    cardsGrid = [];
+}
 
 /**
  * 
@@ -494,8 +505,9 @@ function makeButton(scene = startScene, funct = function () { }, text = "Button"
 function makeLabel(scene = startScene, text = "Label", style, x = 0, y = 0) {
     let label = new PIXI.Text(text);
     label.style = style;
-    label.x = x - label.width / 2;
-    label.y = y - label.height / 2;
+    label.x = x;
+    label.y = y;
+    label.anchor.set(.5, .5);
     scene.addChild(label);
 
     return label;

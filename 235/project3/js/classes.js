@@ -1,5 +1,5 @@
 class Card extends PIXI.Sprite {
-    static speed = 10;
+    static speed = 12;
     static defaultScale = 1;
     static timeBuffer = .75;
 
