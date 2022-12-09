@@ -26,7 +26,8 @@ app.loader.
         "media/Card7.png",
         "media/Card8.png",
         "media/Background.png",
-        "media/heart.png"
+        "media/heart.png",
+        "media/Wizard.png"
     ]);
 app.loader.onProgress.add(e => { console.log(`progress=${e.progress}`) });
 app.loader.onComplete.add(setup);
@@ -43,6 +44,7 @@ let gameOverScene;
 let gameOverLabel;
 let youWinLabel;
 let backgroundSprite;
+let playerSprite;
 
 let cards = [];
 let cardsGrid = [];
@@ -114,35 +116,41 @@ function setup() {
 
 function createLabelsAndButtons() {
     let buttonStyle = new PIXI.TextStyle({
-        fill: 0xFF0000,
-        fontSize: 48,
-        fontFamily: "Arial"
+        fill: 0x00AF00,
+        fontSize: 64,
+        fontFamily: "PirataOne",
+        stroke: 0xFFFFFF,
+        strokeThickness: 2,
+        dropShadow: true,
+        dropShadowBlur: 5
     });
     let labelStyleOne = new PIXI.TextStyle({
-        fill: 0xFFFFFF,
+        fill: 0x00AF00,
         fontSize: 96,
         fontFamily: "PirataOne",
-        stroke: 0xFF0000,
-        strokeThickness: 6
+        stroke: 0xFFFFFF,
+        strokeThickness: 2,
+        dropShadow: true,
+        dropShadowBlur: 5
     });
     let labelStyleTwo = new PIXI.TextStyle({
         fill: 0xFFFFFF,
         fontSize: 64,
         fontFamily: "PirataOne",
         stroke: 0xFF0000,
-        strokeThickness: 6
+        strokeThickness: 1
     });
     let labelStyleThree = new PIXI.TextStyle({
-        fill: 0xFFFFFF,
+        fill: 0x00AF00,
         fontSize: 48,
         fontFamily: "Arial",
-        stroke: 0xFF0000,
-        strokeThickness: 3
+        stroke: 0x000000,
+        strokeThickness: 4
     });
 
     // 1 - set up 'startScene'
     // 1A - make top start label 
-    makeLabel(startScene, "A Fine Match", labelStyleOne, sceneWidth / 2, 120);
+    makeLabel(startScene, "A Fine Match!", labelStyleOne, sceneWidth / 2, 120);
 
     // 1C - make start game button
     makeButton(startScene, startGame, "Play", buttonStyle, sceneWidth / 2, sceneHeight - 100);
@@ -175,6 +183,13 @@ function createLabelsAndButtons() {
         gameScene.addChild(heart);
         enemyHeartSprites.push(heart);
     }
+
+    playerSprite = PIXI.Sprite.from(app.loader.resources["media/Wizard.png"].texture);
+    playerSprite.scale.set(4);
+    playerSprite.anchor.set(.5, .5);
+    playerSprite.x = sideX / 2;
+    playerSprite.y = sceneHeight - playerSprite.height / 2;
+    gameScene.addChild(playerSprite);
 
     // Make label for dodge 
     makeLabel(gameScene, "Dodge:", labelStyleThree, sideX / 2, sceneHeight / 2 - 60);

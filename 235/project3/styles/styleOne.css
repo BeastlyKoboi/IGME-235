@@ -1,0 +1,20 @@
+body {
+    background-color: rgb(53, 110, 53);
+}
+
+canvas {
+    padding: 0;
+    margin: auto;
+    display: block;
+    border-radius: 40px;
+}
+
+@font-face {
+    font-family: 'PirataOne';
+    src: url('../media/PirataOne-Regular.ttf');
+}
+
+.useFont {
+    font-family: 'PirataOne';
+    font-size: 0px;
+}
