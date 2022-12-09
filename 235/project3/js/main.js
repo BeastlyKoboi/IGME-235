@@ -46,6 +46,7 @@ let youWinLabel;
 let backgroundSprite;
 let playerSprite;
 
+// 
 let cards = [];
 let cardsGrid = [];
 let gridColumns = 4;
@@ -58,6 +59,7 @@ let cardX = 80;
 let cardY = 112;
 let gap = 20;
 
+// 
 const maxHearts = 3;
 const maxDodge = 100;
 let currHearts = maxHearts;
@@ -66,7 +68,7 @@ let heartTexture = app.loader.resources["media/heart.png"];
 let heartSprites = [];
 let currDodgeLabel;
 
-
+// 
 let totalEnemyHearts = 6;
 let levelEnemyHearts = 3;
 let enemyHearts = totalEnemyHearts;
@@ -75,8 +77,16 @@ let enemyCooldown = 5;
 let enemyCountdown = enemyCooldown;
 let enemyCountdownLabel;
 
+// 
 let levelNum = 1;
 let paused = true;
+
+// Sounds 
+let matchSound;
+let wrongSound;
+let loopableSongSound; 
+let loseSound;
+let winSound;
 
 function setup() {
     stage = app.stage;
@@ -98,20 +108,15 @@ function setup() {
     gameOverScene.visible = false;
     stage.addChild(gameOverScene);
 
-
     // #4 - Create labels for all 3 scenes 
     createLabelsAndButtons();
 
-    // // #5 - Create ship
-    // ship = new Ship();
-    // gameScene.addChild(ship);
+    // Load sounds
 
 
     // #8 - Start update loop
     app.ticker.add(gameLoop);
 
-    // Now our `startScene` is visible
-    // Clicking the button calls startGame()
 }
 
 function createLabelsAndButtons() {
