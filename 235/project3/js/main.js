@@ -112,7 +112,19 @@ function setup() {
     createLabelsAndButtons();
 
     // Load sounds
-
+    matchSound = new Howl({
+        src: ['media/brightnessUp.wav'],
+        volume: .5
+    });
+    wrongSound = new Howl({
+        src: ['media/brightnessDown.wav'],
+        volume: .5
+    })
+    loopableSongSound = new Howl({
+        src: ['media/backgroundNoise.wav'],
+        loop: true,
+        volume: .2
+    })
 
     // #8 - Start update loop
     app.ticker.add(gameLoop);
@@ -222,7 +234,7 @@ function startGame() {
     // .. more to come
 
     loadLevel();
-
+    loopableSongSound.play();
 }
 
 function gameLoop() {
@@ -255,7 +267,10 @@ function gameLoop() {
                     cardsLeft -= 2;
 
                     console.log(gameScene);
-                    debugger;
+                    
+                }
+                else {
+
                 }
 
                 cardsFlipping = false;
@@ -350,6 +365,10 @@ function flipCard(e) {
         if (cardsSelected[0].frontTexture == cardsSelected[1].frontTexture) {
             cardsSelected[0].matched = true;
             cardsSelected[1].matched = true;
+            matchSound.play();
+        }
+        else {
+            wrongSound.play();
         }
         return;
     }
@@ -402,6 +421,8 @@ function end(hasWon = false) {
 
     // explosions.forEach(e => gameScene.removeChild(e));
     // explosions = [];
+
+    loopableSongSound.stop();
 
     RemoveOldCardGrid()
 
