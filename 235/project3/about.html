@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href=".css">
+    <link rel="stylesheet" href="styles/aboutStyle.css">
 
     <title>Proposal</title>
 </head>
@@ -16,9 +16,9 @@
 
     <h2>High Concept</h2>
     <p>
-        A fast paced mix between a memory match game and a turn-based battler. Try to match cards 
+        A fast paced mix between a memory match game and a turn-based battler. Try to match cards
         turn by turn against your opponent in order to attack and accumulate block, all while under
-        a short time limit. You even have the option of switching two cards to confuse your opponent. 
+        a short time limit. You even have the option of switching two cards to confuse your opponent.
         Just make sure you remember everything!
     </p>
 
@@ -32,49 +32,49 @@
 
     <h2>Platform</h2>
     <p>
-        Desktop web would probably be best since on small screens, flipping over specific cards in a 
+        Desktop web would probably be best since on small screens, flipping over specific cards in a
         large grid might be tougher to do.
     </p>
 
     <h2>Story</h2>
     <p>
-        You play a novice Cardcaster that is attempting to make their way through a dangerous hilly area, 
-        where they will fight their first battles in their journey to become the greatest mage ever and 
+        You play a novice Cardcaster that is attempting to make their way through a dangerous hilly area,
+        where they will fight their first battles in their journey to become the greatest mage ever and
         more currently, get out alive. You progress through the hills into a valley fighting stronger and
-        quicker enemies as you go. 
+        quicker enemies as you go.
     </p>
 
     <h2>Aesthetics</h2>
     <p>
         I would probably aim for pixel art medium, with a slight fantasy style (swords, shields, and monsters).
-        It probably won't be too visually detailed though. I will likely have a basic player, enemy, and hilly 
-        background, and the cards themselves will be just a couple different symbols in the center with different 
-        colors if needed. The cards could also look a bit disheveled and hand drawn. The sounds will likely be just 
-        a hit noise, an error noise, and some intense but repetitive background music. 
+        It probably won't be too visually detailed though. I will likely have a basic player, enemy, and hilly
+        background, and the cards themselves will be just a couple different symbols in the center with different
+        colors if needed. The cards could also look a bit disheveled and hand drawn. The sounds will likely be just
+        a hit noise, an error noise, and some intense but repetitive background music.
     </p>
 
     <h2>Gameplay</h2>
     <p>
-        In this game you have the option to choose 2 cards in the grid to flip over and try to match 
-        them. If you flip over two cards and they match, you are allowed to do the action on the card, which is 
-        add block, charge attack more, or actually attack. The enemy attacks at regular short intervals (5-15s), 
+        In this game you have the option to choose 2 cards in the grid to flip over and try to match
+        them. If you flip over two cards and they match, you are allowed to do the action on the card, which is
+        add block, charge attack more, or actually attack. The enemy attacks at regular short intervals (5-15s),
         but at the beginning of the fight you have a 100% chance of dodging, a percentage which slowly decreases
-        as the game goes on (the cardcaster get more exhausted). After every unsuccessful enemy attack, the 
-        positions of two cards in the grid get swapped (the Cardcaster dropped them while dodging and picked them 
-        back up). When swapping these cards, they do not turn over, but the position movements are still visible.  
-        The main struggle will be remembering as time goes on, while contending with the swapping places, in a 
-        short time frame. During the time between enemy attacks you can try to match as many cards as you can 
-        before it tries to hit you. Each choice of two cards will take about two seconds to reveal and either 
-        commit an action or make an error sound. You will have limited health, so you will only survive a few 
-        attacks. Also if you end up matching everything in the grid, it will just fill up again, while perhaps 
-        giving the player bonus time before the next attack, as if the final match in that grid disoriented it. 
+        as the game goes on (the cardcaster get more exhausted). After every unsuccessful enemy attack, the
+        positions of two cards in the grid get swapped (the Cardcaster dropped them while dodging and picked them
+        back up). When swapping these cards, they do not turn over, but the position movements are still visible.
+        The main struggle will be remembering as time goes on, while contending with the swapping places, in a
+        short time frame. During the time between enemy attacks you can try to match as many cards as you can
+        before it tries to hit you. Each choice of two cards will take about two seconds to reveal and either
+        commit an action or make an error sound. You will have limited health, so you will only survive a few
+        attacks. Also if you end up matching everything in the grid, it will just fill up again, while perhaps
+        giving the player bonus time before the next attack, as if the final match in that grid disoriented it.
         <br>
-        The tuturial would likely be one with a very generous time limit and an easy enemy. After that enemy is 
-        defeated, the next one will have a lesser time limit and a stronger or more sturdy enemy. It will go like 
-        that until the player is able to match the intensity. The first fight will have directions for what to do, 
-        and hints (which will go away) for what cards to pick and what the symbols mean. This will likely mean a 
-        strong degree of repeatability with enemies, only by changing time limits, health values, and attack values, 
-        making them easier to make more of them. 
+        The tuturial would likely be one with a very generous time limit and an easy enemy. After that enemy is
+        defeated, the next one will have a lesser time limit and a stronger or more sturdy enemy. It will go like
+        that until the player is able to match the intensity. The first fight will have directions for what to do,
+        and hints (which will go away) for what cards to pick and what the symbols mean. This will likely mean a
+        strong degree of repeatability with enemies, only by changing time limits, health values, and attack values,
+        making them easier to make more of them.
     </p>
 
     <h2>Mockups</h2>
@@ -83,20 +83,74 @@
 
     <h2>Documentation</h2>
     <p>
-
+        Starting out in this project, I used the basic skeleton of the Circle Blast project. My first priority was
+        making the card select and animation functionality. This was central to my plan and needed to be figured
+        out early. I made early card designs that actually ended up being the only card designs, because I liked
+        them. The solution to the flip animations was the first thought that came to me, which was scaling down the
+        width over time, switching the texture, then scaling it up again. Frankly I was hoping that it would look
+        good, because it was my only idea. It turned out fine, I think mainly due to the actual speed of the flip
+        which makes the eyes fill in the details. To simplify things early, whenever a match occurred, I just scaled
+        it down until 0, then deleted it. This animation ended up sticking around too. A Card class was definitely
+        necessary for all of this, and I am glad I made it one.
+        <br><br>
+        I originally had the cards flip synchronously once two had been selected, which made it had for you to know
+        or remember what card you have already selected. From feedback there were two solutions to this, either make
+        it obvious when you have selected a card, or start their flip animations asynchronously. The first one
+        sounded easier, but I liked the second idea better. This was a real challenge to make happen though, since
+        the system for matching relied upon the animations being identical. So it was a task of redoing what worked
+        in a different way. This took a longer amount of time than I would have liked. It also created some clicking
+        errors, while exposing some existing ones. Two big ones were cards flipping over twice if you clicked too
+        fast, and cards sometimes still having a cardback background while flipping. The second one, I realized, was
+        due to not clearing the board and removing cards from the game scene on a loss. The first one was caused by
+        a simple mistake of having a greater than and lesser than check for timePaused, while not checking at all
+        for equals. Very easy to miss and glad I found it.
+        <br><br>
+        In this project I wanted to challenge myself to make all of my own assets (except fonts of course), which I
+        am glad to say I did. For fonts I used Professor Chin's video to help me and google fonts.
+        <br><br>
+        The first win state for the game was put in as a placeholder, as just clearing the entire board once. When I
+        finally put hearts up for both the player and enemy, I changed it to when the hearts deplete on either side.
+        Once that occured I finally labeled the dodge chance and countdown, because it was said that the game was
+        difficult to understand on that front. I ended up creating helper methods for creating buttons and labels in
+        order to simplify this process. I would have done the same for the character sprites if their were more than
+        two.
+        <br><br>
+        There were two last minute additions to this project that seemed necessary for a semi-completed project,
+        which were some basic instructions on the start page, and the music/sounds during the gameplay. The
+        instructions were made as a quick band-aid to the troubles of people not understanding how to play at the
+        outset. So their strange placement and lack of clarity are a product of lack of time on my part. The sounds
+        were additions that were needed once I realized it was part of the requirements. I found this online sound
+        maker called BeepBox which served my needs and created a match and wrong sound, alongside a loopable
+        bckground tune. A tune which I realized can get annoying. So, in the future I fully intend to create a button
+        to turn the sounds off altogether. Also my use of Howler created a warning in the console that I have not
+        discovered the reason for, since I do not think I am attempting to play music when the page loads.
+        <br><br>
+        I believe that this project accomplishes the requirements, due to a greater emphasis on graphic design than
+        previous projects, a functional and as yet error free gameplay experience, with enough information given to
+        set most people in the right direction to play. Also, the player has a way to meet harder challenges through
+        the game via the increasing amount of enemy hearts after a win (capped at 6 hearts). The HTML and CSS are all
+        validated and the javascript has mostly proper conduct in structure.
     </p>
 
     <h2>Demo Script</h2>
     <p>
-        
+
     </p>
+
+    <h2>Resources Used</h2>
+    <ul>
+        <li><a href="https://pixijs.download/dev/docs/index.html">PixiJS Documentation</a></li>
+        <li><a href="https://github.com/goldfire/howler.js#documentation">Howler Documentation</a></li>
+        <li><a href="https://www.youtube.com/playlist?list=PLGsA9l-S7trVmUJ7HJsNSKIj0qoAO_qO8">Prof Chin Videos</a></li>
+        <li><a href="">Google Fonts</a></li>
+    </ul>
 
     <h2>About the Developers</h2>
     <p>
-        My name is Allan Flores and I am a 2nd year Game Design and Development major and I am pursuing a minor 
-        in web development. I love storytelling of many different mediums, and my primary skills are in 
-        programming and narrative writing. I enjoy solving problems and finding ways to connect and better 
-        interact with our players. 
+        My name is Allan Flores and I am a 2nd year Game Design and Development major and I am pursuing a minor
+        in web development. I love storytelling of many different mediums, and my primary skills are in
+        programming and narrative writing. I enjoy solving problems and finding ways to connect and better
+        interact with our players.
     </p>
 </body>
 

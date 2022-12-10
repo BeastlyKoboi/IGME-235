@@ -15,6 +15,7 @@ PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 // pre-load the images
 app.loader.
     add([
+        // Cards
         "media/Cardback.png",
         "media/Card.png",
         "media/Card1.png",
@@ -25,19 +26,23 @@ app.loader.
         "media/Card6.png",
         "media/Card7.png",
         "media/Card8.png",
+        // Background & UI sprites
         "media/Background.png",
         "media/heart.png",
-        "media/Wizard.png"
+        "media/Wizard.png",
+        "media/Enemy.png",
+        "media/Directions.png"
     ]);
 app.loader.onProgress.add(e => { console.log(`progress=${e.progress}`) });
 app.loader.onComplete.add(setup);
 app.loader.load();
 
-
 // aliases
 let stage;
 
-// game variables
+//// game variables ////
+
+// Scenes, Labels, and environment sprites
 let startScene;
 let gameScene;
 let gameOverScene;
@@ -45,8 +50,9 @@ let gameOverLabel;
 let youWinLabel;
 let backgroundSprite;
 let playerSprite;
+let enemySprite; 
 
-// 
+// Card information and placement
 let cards = [];
 let cardsGrid = [];
 let gridColumns = 4;
@@ -59,7 +65,7 @@ let cardX = 80;
 let cardY = 112;
 let gap = 20;
 
-// 
+// Player hearts and dodge 
 const maxHearts = 3;
 const maxDodge = 100;
 let currHearts = maxHearts;
@@ -68,7 +74,7 @@ let heartTexture = app.loader.resources["media/heart.png"];
 let heartSprites = [];
 let currDodgeLabel;
 
-// 
+// Enemy hearts and countdown
 let totalEnemyHearts = 6;
 let levelEnemyHearts = 3;
 let enemyHearts = totalEnemyHearts;
@@ -77,7 +83,7 @@ let enemyCooldown = 5;
 let enemyCountdown = enemyCooldown;
 let enemyCountdownLabel;
 
-// 
+// Level variables
 let levelNum = 1;
 let paused = true;
 
@@ -114,16 +120,16 @@ function setup() {
     // Load sounds
     matchSound = new Howl({
         src: ['media/brightnessUp.wav'],
-        volume: .5
+        volume: .8
     });
     wrongSound = new Howl({
         src: ['media/brightnessDown.wav'],
-        volume: .5
+        volume: .8
     })
     loopableSongSound = new Howl({
         src: ['media/backgroundNoise.wav'],
         loop: true,
-        volume: .2
+        volume: .8
     })
 
     // #8 - Start update loop
@@ -132,6 +138,7 @@ function setup() {
 }
 
 function createLabelsAndButtons() {
+    // Text styles for later use
     let buttonStyle = new PIXI.TextStyle({
         fill: 0x00AF00,
         fontSize: 64,
@@ -151,11 +158,11 @@ function createLabelsAndButtons() {
         dropShadowBlur: 5
     });
     let labelStyleTwo = new PIXI.TextStyle({
-        fill: 0xFFFFFF,
-        fontSize: 64,
-        fontFamily: "PirataOne",
-        stroke: 0xFF0000,
-        strokeThickness: 1
+        fill: 0x000000,
+        fontSize: 24,
+        fontFamily: "Arial",
+        stroke: 0x000000,
+        strokeThickness: 0
     });
     let labelStyleThree = new PIXI.TextStyle({
         fill: 0x00AF00,
@@ -171,6 +178,21 @@ function createLabelsAndButtons() {
 
     // 1C - make start game button
     makeButton(startScene, startGame, "Play", buttonStyle, sceneWidth / 2, sceneHeight - 100);
+
+    // Create Directions on start scene
+    let directionImg = PIXI.Sprite.from(app.loader.resources["media/Directions.png"].texture);
+    directionImg.anchor.set(.5, .5);
+    directionImg.scale.set(2);
+    directionImg.x = sceneWidth / 3 + 60;
+    directionImg.y = sceneHeight / 2 + 20;
+    startScene.addChild(directionImg);
+
+    let dir1 = makeLabel(startScene, "Flip Cards", labelStyleTwo, sceneWidth / 2 - 50, 245);
+    dir1.anchor.set(0,.5);
+    let dir2 = makeLabel(startScene, "Match to Cast Spells", labelStyleTwo, sceneWidth / 2 - 50, 335);
+    dir2.anchor.set(0,.5);
+    let dir3 = makeLabel(startScene, "Kill Enemy to Win", labelStyleTwo, sceneWidth / 2 - 50, 410);
+    dir3.anchor.set(0,.5);
 
     let sideX = (sceneWidth - gridColumns * (cardX + gap) + gap) / 2;
 
@@ -201,12 +223,21 @@ function createLabelsAndButtons() {
         enemyHeartSprites.push(heart);
     }
 
+    // Make player sprite for game scene
     playerSprite = PIXI.Sprite.from(app.loader.resources["media/Wizard.png"].texture);
     playerSprite.scale.set(4);
     playerSprite.anchor.set(.5, .5);
     playerSprite.x = sideX / 2;
     playerSprite.y = sceneHeight - playerSprite.height / 2;
     gameScene.addChild(playerSprite);
+
+    // Make Enemy sprite for game scene
+    enemySprite = PIXI.Sprite.from(app.loader.resources["media/Enemy.png"].texture);
+    enemySprite.scale.set(4);
+    enemySprite.anchor.set(.5, .5);
+    enemySprite.x = sceneWidth - sideX + sideX / 2;
+    enemySprite.y = sceneHeight - playerSprite.height / 2;
+    gameScene.addChild(enemySprite);
 
     // Make label for dodge 
     makeLabel(gameScene, "Dodge:", labelStyleThree, sideX / 2, sceneHeight / 2 - 60);
@@ -234,7 +265,7 @@ function startGame() {
     // .. more to come
 
     loadLevel();
-    loopableSongSound.play();
+    
 }
 
 function gameLoop() {
@@ -248,6 +279,7 @@ function gameLoop() {
     let mousePosition = app.renderer.plugins.interaction.mouse.global;
     // ship.position = mousePosition;
 
+    // Continue flip animations, when they end, check for match
     if (cardsFlipping) {
         if (cardsSelected.length == 2) {
             let card1Done = cardsSelected[0].flip(dt);
@@ -265,12 +297,6 @@ function gameLoop() {
                     cardsGrid[cardsSelected[0].gridRow][cardsSelected[0].gridCol] = null;
                     cardsGrid[cardsSelected[1].gridRow][cardsSelected[1].gridCol] = null;
                     cardsLeft -= 2;
-
-                    console.log(gameScene);
-                    
-                }
-                else {
-
                 }
 
                 cardsFlipping = false;
@@ -282,10 +308,11 @@ function gameLoop() {
         }
     }
 
-
+    // Countdown more and changes label
     enemyCountdown -= dt;
     enemyCountdownLabel.text = Math.ceil(enemyCountdown) + ' Secs';
 
+    // Checks for countdown, if 0 attack
     if (enemyCountdown < 0) {
         enemyCountdown = enemyCooldown;
         enemyCountdownLabel.text = enemyCountdown;
@@ -298,7 +325,6 @@ function gameLoop() {
             currDodge *= .9;
             currDodgeLabel.text = Math.ceil(currDodge) + '%';
         }
-
     }
 
     // #7 - Is game over?
@@ -320,6 +346,7 @@ function createCardPair(cardFront = cardDefaultFront, effectNum = 1) {
     let sameCards = 2;
     let cardPair = [];
 
+    // Creates and adds cards
     for (let i = 0; i < sameCards; i++) {
         let card = new Card(cardFront);
         card.interactive = true;
@@ -331,6 +358,7 @@ function createCardPair(cardFront = cardDefaultFront, effectNum = 1) {
         cardsLeft++;
     }
 
+    // Add effects to the card pair
     switch (effectNum) {
         case 1:
         case 2:
@@ -356,10 +384,11 @@ function createCardPair(cardFront = cardDefaultFront, effectNum = 1) {
 }
 
 function flipCard(e) {
-
+    // if two selected, do nothing
     if (cardsSelected.length == 2) {
         return;
     }
+    // if one selected, add card and check for match
     if (cardsSelected.length == 1 && e.target != cardsSelected[0]) {
         cardsSelected.push(e.target);
         if (cardsSelected[0].frontTexture == cardsSelected[1].frontTexture) {
@@ -372,29 +401,33 @@ function flipCard(e) {
         }
         return;
     }
+    // if none selected, add card
     if (cardsSelected.length == 0) {
         cardsSelected.push(e.target);
         cardsFlipping = true;
         return;
     }
-
 }
 
 function loadLevel() {
+    loopableSongSound.play();
+
+    // Create new card grid
     RefreshCardGrid()
 
-    // Set active hearts for next level
+    // Restart enemy countdown
     enemyCountdown = enemyCooldown;
     enemyCountdownLabel.text = enemyCountdown;
 
+    // Set active hearts for next level
     levelEnemyHearts = 2 + levelNum;
 
+    // Reset player dodge and hearts
     currDodge = maxDodge;
     currDodgeLabel.text = Math.ceil(currDodge) + '%';
-
-
     currHearts = maxHearts;
 
+    // Make specific hearts visible
     for (let i = 0; i < maxHearts; i++) {
         heartSprites[i].visible = true;
     }
@@ -406,7 +439,7 @@ function loadLevel() {
         enemyHeartSprites[i].visible = false;
     }
 
-
+    // Unpause
     paused = false;
 }
 
@@ -468,6 +501,7 @@ function addCountdownTime() {
     enemyCountdown += 5;
     enemyCountdownLabel.text = enemyCountdown;
 }
+
 
 function RefreshCardGrid() {
     RemoveOldCardGrid()
@@ -553,5 +587,3 @@ function makeLabel(scene = startScene, text = "Label", style, x = 0, y = 0) {
 
     return label;
 }
-
-
