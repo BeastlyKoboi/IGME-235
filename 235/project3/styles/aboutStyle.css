@@ -3,8 +3,10 @@ body{
     margin: 0 auto;
     background-color: black;
     color: aliceblue;
+    font-size: larger;
 }
 
 img {
     width: 100%;
 }
+
