@@ -15,16 +15,16 @@
 
 <body>
 
-    <header class="navlinks">
-        <ul>
-            <li id="navigation-home"><a href="#">About Me</a></li>
-            <li id="navigation-proj"><a href="#projects">Projects</a></li>
-            <li id="navigation-res"><a href="#resume">Resume</a></li>
-            <li id="navigation-cont"><a href="#contact">Contact</a></li>
-        </ul>
-    </header>
-
     <div id="wrapper">
+        <div id="navigation" class="navlinks">
+            <ul>
+                <li id="navigation-home"><a href="#">About Me</a></li>
+                <li id="navigation-proj"><a href="#projects">Projects</a></li>
+                <li id="navigation-res"><a href="#resume">Resume</a></li>
+                <li id="navigation-cont"><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
         <div id="about">
             <div id="hist">
                 <div id="hist-image">
@@ -33,8 +33,9 @@
 
                 <div id="hist-caption">
                     <p>
-                    <strong>Above: </strong>
-                    Celebrating the 4th of July with my family, on a rooftop in Charlotte, NC</p>
+                        <strong>Above: </strong>
+                        Celebrating the 4th of July with my family, on a rooftop in Charlotte, NC
+                    </p>
                 </div>
             </div>
 
@@ -72,21 +73,62 @@
         <div id="projects">
             <h2>Projects</h2>
 
-            <div id="projects-spellblade">
-                <img src="media/spellblade2.png" alt="Spellblade Gameplay">
+            <div id="projects-afinematch" class="project-item">
+                <img src="media/AFineMatch.png" alt="A Fine Match Gameplay">
                 <div>
-                    <h3>Spellblade</h3>
+                    <h3><a href="https://people.rit.edu/arf7094/235/project3/" target="_blank">A Fine Match</a></h3>
                     <p>
-                        A side-scrolling 2D platformer I worked on as a member of a team of four in Monogame. My 
-                        primary areas of responsibility were the level rendering, file management, and later the 
-                        animations. You would slash, blast, and jump your way through each level, until facing the 
-                        unique bosses. As you traverse each level, you can improve an ability to make the future 
-                        easier. 
+                        A card-matching battler created with PixiJS as an academic project. You play a young 
+                        cardcaster that is making their way through their first battles. Match cards to cast 
+                        spells, which have all sorts of effects. Effects like extending the time before the 
+                        next attack, attacking, healing hearts, and adding dodge chance. All assets were custom
+                        made specifically for this game. 
                     </p>
                 </div>
             </div>
 
-            <div id="projects-tfoo">
+            <div id="projects-earthkeeper" class="project-item">
+                <img src="media/EarthKeeper.png" alt="Earth Keeper Gameplay">
+                <div>
+                    <h3><a href="https://beastlykoboi.github.io/Earth-Keeper/" target="_blank">Earth Keeper</a></h3>
+                    <p>
+                        An asteroids-esque shooter game created in unity and with an existing WebGl build. 
+                        You are controlling the Hestia, a spaceship that must protect the earth from asteroids.
+                        You must shoot rockets to destroy them, and make sure to avoid hitting earth yourself. 
+                        All assets are custom made and this project is still currently in production. New 
+                        mechanics and features coming soon. 
+                    </p>
+                </div>
+            </div>
+
+            <div id="projects-ggg" class="project-item">
+                <img src="media/GreedyGamerGizmo.png" alt="Greedy Gamer Gizmo Website">
+                <div>
+                    <h3><a href="https://people.rit.edu/arf7094/235/project2/" target="_blank">Greedy Gamer Gizmo</a></h3>
+                    <p>
+                        A tool created using the Cheapshark API to help frugal gamers find the best discounts 
+                        and deals on the games they want. This website searches a variety of stores with many 
+                        different searchable parameters, including max price, minimum rating, name, release date,
+                        savings, and more! All thanks to Cheapshark for making it possible. 
+                    </p>
+                </div>
+            </div>
+
+            <div id="projects-spellblade" class="project-item">
+                <img src="media/spellblade2.png" alt="Spellblade Gameplay">
+                <div>
+                    <h3>Spellblade</h3>
+                    <p>
+                        A side-scrolling 2D platformer I worked on as a member of a team of four in Monogame. My
+                        primary areas of responsibility were the level rendering, file management, and later the
+                        animations. You would slash, blast, and jump your way through each level, until facing the
+                        unique bosses. As you traverse each level, you can improve an ability to make the future
+                        easier.
+                    </p>
+                </div>
+            </div>
+
+            <div id="projects-tfoo" class="project-item">
                 <img src="media/theFountainOfObjects.png" alt="Fountain of Objects Gameplay">
                 <div>
                     <h3>The Fountain of Objects</h3>
@@ -106,7 +148,7 @@
                 </div>
             </div>
 
-            <div id="projects-minesweeper">
+            <div id="projects-minesweeper" class="project-item">
                 <img src="media/minesweeper.png" alt="Minesweeper Gameplay">
                 <div>
                     <h3>Minesweeper</h3>
@@ -141,7 +183,7 @@
                 <div id="contact-form">
                     <iframe
                         src="https://docs.google.com/forms/d/e/1FAIpQLSeU72MDouf67Do3Js1vfs4pAv7AAVjL0N1gwr9Uhb255JyEdA/viewform?embedded=true"
-                         height="700" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+                        height="700" frameborder="0" marginheight="0" marginwidth="0"></iframe>
                 </div>
 
                 <div id="contact-icons">

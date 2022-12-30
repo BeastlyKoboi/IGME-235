@@ -352,6 +352,7 @@ function createCardPair(cardFront = cardDefaultFront, effectNum = 1) {
         card.interactive = true;
         card.buttonMode = true;
         card.on("click", flipCard);
+        card.on('touchend', flipCard);
         cards.push(card);
         cardPair.push(card);
         gameScene.addChild(card);

@@ -1,12 +1,17 @@
-html {scroll-behavior: smooth;}
-body { margin: 0;}
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+}
 
 #wrapper {
     margin: 0rem;
 
     display: flex;
     flex-flow: column;
-    
+
     background-image: url(../media/woodWallpaper2.jpg);
     background-repeat: round;
 }
@@ -15,34 +20,37 @@ body { margin: 0;}
     #wrapper {
         display: grid;
         grid-template-columns: 2fr 3fr;
-        grid-template-rows: auto auto auto auto;
+        grid-template-rows: auto auto auto auto auto;
 
-        grid-template-areas: 
-        "about   about"
-        "projs   projs"
-        "res     res"
-        "contact contact";
+        grid-template-areas:
+            "nav     nav"
+            "about   about"
+            "projs   projs"
+            "res     res"
+            "contact contact";
     }
+
     #about {
         display: grid;
         grid-template-columns: 2fr 3fr;
         grid-template-rows: auto auto auto auto;
 
-        grid-template-areas: 
-        "hist aboutme";
+        grid-template-areas:
+            "hist aboutme";
     }
 }
 
 @media screen and (min-width: 1100px) {
     #wrapper {
         grid-template-columns: 2fr 4fr;
-        grid-template-rows: auto auto auto auto;
+        grid-template-rows: auto auto auto auto auto;
 
-        grid-template-areas: 
-        "about   about"
-        "projs   projs"
-        "res     res"
-        "contact contact";
+        grid-template-areas:
+            "nav     nav"
+            "about   about"
+            "projs   projs"
+            "res     res"
+            "contact contact";
     }
 }
 
@@ -54,41 +62,67 @@ body { margin: 0;}
 }
 
 #resume embed {
-    display: block; 
-    margin: 0 auto; 
+    display: block;
+    margin: 0 auto;
     width: 75%;
     height: 400px;
-    zoom:150%;
+    zoom: 150%;
 }
 
-header { grid-area: nav;}
-#about { grid-area: about;}
-#hist { grid-area: hist;}
-#hist-image { grid-area: histimg;}
-#hist-caption { grid-area: histcap;}
-#about-me { grid-area: aboutme;}
-#projects { grid-area: projs;}
-#resume { grid-area: res;}
-#contact { grid-area: contact}
+#navigation {
+    grid-area: nav;
+}
 
-header {
+#about {
+    grid-area: about;
+}
+
+#hist {
+    grid-area: hist;
+}
+
+#hist-image {
+    grid-area: histimg;
+}
+
+#hist-caption {
+    grid-area: histcap;
+}
+
+#about-me {
+    grid-area: aboutme;
+}
+
+#projects {
+    grid-area: projs;
+}
+
+#resume {
+    grid-area: res;
+}
+
+#contact {
+    grid-area: contact;
+}
+
+#navigation {
     position: sticky;
     text-align: center;
     top: 0px;
     z-index: 5;
-    background-image: url(../media/woodWallpaper2.jpg);
 }
-header ul {
+
+#navigation ul {
     list-style-type: none;
     display: flex;
     justify-content: space-around;
     padding: 0%;
-    margin: 0% 20px;
+    margin: 0% 0px;
     background-color: transparent;
     font-size: 20px;
-    
 }
-header ul li {
+
+#navigation ul li {
     float: left;
     border-radius: 0px 0px 10px 10px;
     width: 100%;
@@ -98,20 +132,33 @@ header ul li {
     text-decoration: none;
     transition: transform 0.25s ease-out;
 }
-header ul li a {
+
+#navigation ul li a {
     display: block;
     text-align: center;
     text-decoration: none;
     color: black;
 }
-header ul li:last-child {
+
+#navigation ul li:last-child {
     border-right: 2px solid black;
 }
-#navigation-home { background-color: #f4c9c9;}
-#navigation-proj { background-color: #eaf2bf;}
-#navigation-res { background-color: #bee3c6;}
-#navigation-cont { background-color: #cecbe3;}
-/* extra color: #bde4ea */
+
+#navigation-home {
+    background-color: #f4c9c9;
+}
+
+#navigation-proj {
+    background-color: #eaf2bf;
+}
+
+#navigation-res {
+    background-color: #bee3c6;
+}
+
+#navigation-cont {
+    background-color: #cecbe3;
+}
 
 #about-me {
     width: 80%;
@@ -126,11 +173,47 @@ h2 {
     border: 1px solid black;
     border-radius: 10px;
     text-align: center;
-    width:80%;
+    width: 80%;
 }
-#projects h2 { background-color: #eaf2bf;}
-#resume h2 { background-color: #bee3c6;}
-#contact h2 { background-color: #cecbe3;}
+
+#projects h2 {
+    background-color: #eaf2bf;
+}
+
+#resume h2 {
+    background-color: #bee3c6;
+}
+
+#contact h2 {
+    background-color: #cecbe3;
+}
+
+#projects-afinematch {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 80%;
+    align-items: center;
+    margin: 1rem auto;
+    padding: 1rem 0;
+}
+
+#projects-earthkeeper {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 80%;
+    align-items: center;
+    margin: 1rem auto;
+    padding: 1rem 0;
+}
+
+#projects-ggg {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 80%;
+    align-items: center;
+    margin: 1rem auto;
+    padding: 1rem 0;
+}
 
 #projects-spellblade {
     display: flex;
@@ -140,6 +223,7 @@ h2 {
     margin: 1rem auto;
     padding: 1rem 0;
 }
+
 #projects-tfoo {
     display: flex;
     flex-flow: column nowrap;
@@ -148,6 +232,7 @@ h2 {
     margin: 1rem auto;
     padding: 1rem 0;
 }
+
 #projects-minesweeper {
     display: flex;
     flex-flow: column nowrap;
@@ -157,17 +242,31 @@ h2 {
     padding: 1rem 0;
 }
 
+#projects-afinematch img {
+    width: 100%;
+}
+
+#projects-earthkeeper img {
+    width: 100%;
+}
+
+#projects-ggg img {
+    width: 100%;
+}
+
 #projects-spellblade img {
     width: 100%;
     /* border: 10px solid white;
     filter: drop-shadow(-5px 5px 5px black); */
 }
+
 #projects-tfoo img {
     width: 80%;
     margin: 0 auto;
     /* border: 10px solid white;
     filter: drop-shadow(-5px 5px 5px black); */
 }
+
 #projects-minesweeper img {
     width: 100%;
     /* transform: rotate(-5deg); */
@@ -177,60 +276,90 @@ h2 {
 
 /* Handles grid for projects on wide and increases nav font size */
 @media screen and (min-width: 800px) {
-    header ul {
+    #navigation ul {
         font-size: 30px;
     }
 
-    /* #about {
-        background-image: url(../media/clipboard3.jpeg);
-        background-size: 90vw;
-        background-repeat: no-repeat;
-        background-position: top center;
-        border-radius: 10px;
-    } */
+    #projects img {
+        grid-area: scene;
+    }
 
-    
+    #projects div {
+        grid-area: projtext;
+    }
 
-    #projects img { grid-area: scene;}
-    #projects div { grid-area: projtext;}
+    #projects-afinematch {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+
+        grid-template-areas:
+            "projtext scene";
+        width: 90%;
+    }
+
+    #projects-earthkeeper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+
+        grid-template-areas:
+            "scene projtext";
+        width: 90%;
+    }
+
+    #projects-ggg {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+
+        grid-template-areas:
+            "projtext scene";
+        width: 90%;
+    }
 
     #projects-spellblade {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
 
-        grid-template-areas: 
-        "scene projtext";
+        grid-template-areas:
+            "scene projtext";
         width: 90%;
-        
+
     }
+
     #projects-tfoo {
         display: grid;
         grid-template-columns: 2fr 1fr;
         grid-template-rows: auto auto;
 
-        grid-template-areas: 
-        "projtext scene";
+        grid-template-areas:
+            "projtext scene";
         width: 90%;
     }
+
     #projects-minesweeper {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
 
-        grid-template-areas: 
-        "scene projtext";
+        grid-template-areas:
+            "scene projtext";
         width: 90%;
     }
-    
+
 }
 
 /* Text formatting */
-header {
+#navigation {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#aboutme, #projects, #resume, #contact {
+#aboutme,
+#projects,
+#resume,
+#contact {
     padding-top: 50px;
 }
 
@@ -239,21 +368,25 @@ header {
     flex-direction: column;
     align-items: center;
 }
+
 #hist-image {
     padding: 0rem 0rem;
     align-content: center;
-    
+
 }
+
 #hist-caption {
     padding: 0rem 5rem;
     font-size: smaller;
     margin: 0 auto;
 }
+
 #hist-caption p {
     border-radius: 5px;
     background-color: aliceblue;
     padding: 1rem;
 }
+
 #hist-image img {
     border: 10px solid white;
     filter: drop-shadow(-5px 5px 5px black);
@@ -262,14 +395,18 @@ header {
     margin: 0 auto;
 }
 
-#title, #abstract, #text {
+#title,
+#abstract,
+#text {
     margin: 0rem 1rem;
 }
+
 #title {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 60px;
     text-align: center;
 }
+
 #abstract {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
@@ -279,45 +416,30 @@ header {
 #projects h3 {
     text-align: center;
 }
+
 #projects p {
-    font-size:smaller;
+    font-size: 14;
     width: 90%;
-    text-align: left ;
-    margin: 0 auto;
+    text-align: left;
+    margin: 0 auto 1rem auto;
 }
 
-#projects-spellblade div {
+.project-item div {
     background-image: url(../media/indexCard1.png);
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    padding: 20px 0;
-    margin: 10px 0;
+    padding: 20px 0px;
+    margin: 10px 20px;
 }
-#projects-tfoo div {
-    background-image: url(../media/indexCard1.png);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding: 20px 0;
-    margin: 10px 0;
-}
-#projects-minesweeper div {
-    background-image: url(../media/indexCard1.png);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding: 20px 0;
-    margin: 10px 0;
-}
-
 
 #contact-types {
     display: flex;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     flex-flow: column nowrap;
     padding: 40px 0 4rem 0;
 }
+
 #contact-form {
     background-image: url(../media/graphPaperNotebook.png);
     background-size: 100%;
@@ -329,22 +451,25 @@ header {
 }
 
 #contact-form iframe {
-    width: 400px; 
+    width: 400px;
     height: 500px;
     display: block;
     margin: 0 auto;
 }
+
 #contact-icons {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
     text-align: center;
     margin-top: 60px;
-    
+
 }
+
 #contact-icons img {
     max-width: 5vw;
 }
+
 #contact-icons a:nth-child(1) {
     background-image: url(../media/roundStickers3.png);
     background-size: 100%;
@@ -353,6 +478,7 @@ header {
     padding: 30px;
     margin: -30px;
 }
+
 #contact-icons a:nth-child(2) {
     background-image: url(../media/roundStickers2.png);
     background-size: 100%;
@@ -362,67 +488,53 @@ header {
     margin: -30px;
 }
 
-@media screen and (max-width: 450px){
-    
-    #projects-spellblade div {
-        padding: 20px 0 40px 0;
-        margin: 0 -40px 0;
-        
-    }
-    #projects-tfoo div {
-        padding: 20px 0 40px 0;
-        margin: 0 -40px 0;
-    }
-    #projects-minesweeper div {
+@media screen and (max-width: 450px) {
+
+    .project-item div {
         padding: 20px 0 40px 0;
         margin: 0 -40px 0;
     }
 
     #contact-form iframe {
-        width: 300px; 
+        width: 300px;
         height: 400px;
         display: block;
         margin: 0 auto;
     }
+
     #contact-icons a:nth-child(1) {
         background-size: 80%;
     }
+
     #contact-icons a:nth-child(2) {
         background-size: 80%;
-        
+
     }
 }
 
 /* Make backgrounds for sections */
 @media screen and (min-width: 800px) {
 
+    h2 {
+        margin: 10px auto;
+        padding: 5px 10px;
+        display: inline;
+        border: 2px solid black;
+        border-radius: 10px;
+    }
 
-h2 {
-    margin: 10px auto;
-    padding: 5px 10px;
-    display: inline;
-    border: 2px solid black;
-    border-radius: 10px;
-}
-    #projects-spellblade div {
-        padding: 40px 0;
-        margin: -40px 0;
-    }
-    #projects-tfoo div {
-        padding: 40px 0;
-        margin: -40px 0;
-    }
-    #projects-minesweeper div {
-        padding: 40px 0;
-        margin: -40px 0;
+    .project-item div {
+        padding: 10px 0;
+        margin: -40px 1rem;
     }
 
     #contact-types {
         display: flex;
-        justify-content:space-evenly;
+        justify-content: space-evenly;
         flex-flow: row nowrap;
         padding: 40px 0 4rem 0;
     }
+
     #contact-form {
         background-image: url(../media/graphPaperNotebook.png);
         background-size: 100%;
@@ -431,18 +543,22 @@ h2 {
         padding: 40px 80px;
         margin: -40px;
     }
+
     #contact-form iframe {
-        width: 450px; 
+        width: 450px;
     }
+
     #contact-icons {
         display: flex;
         flex-flow: column nowrap;
         justify-content: space-around;
         text-align: center;
     }
+
     #contact-icons img {
         max-width: 5vw;
     }
+
     #contact-icons a:nth-child(1) {
         background-image: url(../media/roundStickers3.png);
         background-size: 100%;
@@ -451,6 +567,7 @@ h2 {
         padding: 30px;
         margin: -30px;
     }
+
     #contact-icons a:nth-child(2) {
         background-image: url(../media/roundStickers2.png);
         background-size: 100%;
@@ -463,12 +580,31 @@ h2 {
 }
 
 
-.navlinks li:hover { transform: scale(1.15);}
+.navlinks li:hover {
+    transform: scale(1.15);
+}
 
-.navlinks a:link { color: black; }
-.navlinks a:visited { color: black; }
-.navlinks a:focus { color: black; text-decoration: none; }
-.navlinks a:hover { color: black; text-decoration: none; }
-.navlinks a:active { color: black; text-decoration: none; background-color: white; border-radius: 0px 0px 10px 10px;}
+.navlinks a:link {
+    color: black;
+}
 
+.navlinks a:visited {
+    color: black;
+}
 
+.navlinks a:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.navlinks a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.navlinks a:active {
+    color: black;
+    text-decoration: none;
+    background-color: white;
+    border-radius: 0px 0px 10px 10px;
+}
