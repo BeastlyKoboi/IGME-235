@@ -188,7 +188,7 @@ h2 {
     background-color: #cecbe3;
 }
 
-#projects-afinematch {
+.project-item {
     display: flex;
     flex-flow: column nowrap;
     width: 80%;
@@ -197,82 +197,14 @@ h2 {
     padding: 1rem 0;
 }
 
-#projects-earthkeeper {
-    display: flex;
-    flex-flow: column nowrap;
-    width: 80%;
-    align-items: center;
-    margin: 1rem auto;
-    padding: 1rem 0;
-}
-
-#projects-ggg {
-    display: flex;
-    flex-flow: column nowrap;
-    width: 80%;
-    align-items: center;
-    margin: 1rem auto;
-    padding: 1rem 0;
-}
-
-#projects-spellblade {
-    display: flex;
-    flex-flow: column nowrap;
-    width: 80%;
-    align-items: center;
-    margin: 1rem auto;
-    padding: 1rem 0;
-}
-
-#projects-tfoo {
-    display: flex;
-    flex-flow: column nowrap;
-    width: 80%;
-    align-items: center;
-    margin: 1rem auto;
-    padding: 1rem 0;
-}
-
-#projects-minesweeper {
-    display: flex;
-    flex-flow: column nowrap;
-    width: 80%;
-    align-items: center;
-    margin: 1rem auto;
-    padding: 1rem 0;
-}
-
-#projects-afinematch img {
+.project-item img {
     width: 100%;
-}
-
-#projects-earthkeeper img {
-    width: 100%;
-}
-
-#projects-ggg img {
-    width: 100%;
-}
-
-#projects-spellblade img {
-    width: 100%;
-    /* border: 10px solid white;
-    filter: drop-shadow(-5px 5px 5px black); */
 }
 
 #projects-tfoo img {
     width: 80%;
     margin: 0 auto;
-    /* border: 10px solid white;
-    filter: drop-shadow(-5px 5px 5px black); */
 }
-
-#projects-minesweeper img {
-    width: 100%;
-    /* transform: rotate(-5deg); */
-}
-
-
 
 /* Handles grid for projects on wide and increases nav font size */
 @media screen and (min-width: 800px) {
@@ -286,6 +218,26 @@ h2 {
 
     #projects div {
         grid-area: projtext;
+    }
+
+    #projects-minetofive {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+
+        grid-template-areas:
+            "projtext scene";
+        width: 90%;
+    }
+
+    #projects-quotesofnote {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+
+        grid-template-areas:
+            "scene projtext";
+        width: 90%;
     }
 
     #projects-afinematch {
