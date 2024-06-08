@@ -19,7 +19,7 @@ header {
 
 h1 {
     margin: 0;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 h2 {
@@ -49,7 +49,8 @@ p {
     border-radius: 10px;
 }
 
-#base-filters #sort-select, #base-filters #sort-direction {
+#base-filters #sort-select,
+#base-filters #sort-direction {
     background-color: rgb(204, 255, 204);
     border-radius: 10px;
     padding: 6px 10px;
@@ -97,7 +98,7 @@ p {
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
-    gap: 20px 20px;
+    gap: 15px 15px;
 }
 
 .progress-bar {
@@ -137,33 +138,39 @@ p {
     color: black;
     border-radius: 10px;
     display: grid;
-    grid-template-rows: 200px min-content;
+    grid-template-rows: min-content min-content;
+    height: min-content;
+    max-width: 200px;
+    padding: 5px;
 }
 
 #results div img {
-    width: 90%;
+    width: 100%;
     max-width: 100%;
     border-radius: 10px;
-    padding: 5px;
     align-self: center;
     justify-self: center;
 }
 
 .description {
-    padding: 5px 5px;
 }
+
 .goodrevs {
     color: green;
 }
+
 .mehrevs {
     color: rgb(171, 123, 0);
 }
+
 .badrevs {
     color: red;
 }
+
 .price {
     font-size: large;
 }
+
 .discount {
     color: green;
     font-size: larger;
